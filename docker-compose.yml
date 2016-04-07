@@ -1,0 +1,17 @@
+redis:
+  restart: always
+  image: redis:3.0.7-alpine
+  expose:
+    - "6378"
+web:
+  build: web/.
+  ports:
+    - "80:80"
+    - "443:443"
+    - "8080:8080"
+  links:
+    - redis
+  volumes:
+    - ./web:/opt/openresty/nginx/conf
+  entrypoint: ""
+  command:  bash -c "service dnsmasq restart && lapis server development"
