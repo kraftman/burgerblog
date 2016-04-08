@@ -11,6 +11,8 @@ events {
 http {
   include mime.types;
 
+  lua_package_path "./controllers/?.lua;;./lib/?.lua;;";
+
   server {
     listen 8080;
     lua_code_cache off;

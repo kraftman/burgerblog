@@ -1,0 +1,19 @@
+<!-- views/layout.etlua -->
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  <title><%= page_title or "BURGER" %></title>
+  <link rel="stylesheet" type="text/css" href="/static/css/sitestyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="/static/js/main.js" ></script>
+  <body>
+  <div id='centerPage'>
+    <% render("views.navigation") %>
+    <p id="demo"></p>
+    <% content_for("inner") %>
+  </div>
+  </body>
+</html>
