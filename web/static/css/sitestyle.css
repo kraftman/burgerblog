@@ -1,31 +1,48 @@
 .rating {
-    float:left;
-    width:300px;
+  float:left;
 }
-.rating span { float:right; position:relative; }
-.rating span input {
-    position:absolute;
-    top:0px;
-    left:0px;
-    opacity:0;
+
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
 }
-.rating span label {
-    display:inline-block;
-    width:30px;
-    height:30px;
-    text-align:center;
-    color:#FFF;
-    background:#ccc;
-    font-size:30px;
-    margin-right:2px;
-    line-height:30px;
-    border-radius:50%;
-    -webkit-border-radius:50%;
+
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  padding:0 .1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:200%;
+  line-height:1.2;
+  color:#ddd;
 }
-.rating span:hover ~ span label,
-.rating span:hover label,
-.rating span.checked label,
-.rating span.checked ~ span label {
-    background:#F90;
-    color:#FFF;
+
+.rating:not(:checked) > label:before {
+  content: &#9733;
+}
+
+.rating > input:checked ~ label {
+  color: #ff7700;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+.rating> input:checked + label:hover,
+.rating> input:checked + label:hover ~ label,
+.rating> input:checked ~ label:hover,
+.rating> input:checked ~ label:hover ~ label,
+.rating> label:hover ~ input:checked ~ label {
+  color: #ea0;
+}
+
+.rating > label:active {
+  position:relative;
+  top:2px;
+  left:2px;
 }
