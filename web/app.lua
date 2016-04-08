@@ -3,7 +3,7 @@ local app = lapis.Application()
 app:enable("etlua")
 app.layout = require "views.layout"
 
-app:get("/", function()
+app:get("index", "/", function()
   --return "Welcome to Lapis " .. require("lapis.version")
   return {render = 'index'}
 end)
