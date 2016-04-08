@@ -1,6 +1,6 @@
 FROM erikcw/lapis:latest
 
-RUN apt-get install -y autossh uuid-dev dnsmasq
+RUN apt-get install -y autossh uuid-dev dnsmasq luajit
 
 RUN echo "\n\n# Docker extra config \nuser=root\naddn-hosts=/etc/hosts\n" >> /etc/dnsmasq.conf
 
