@@ -15,6 +15,9 @@
   <label for="burgerName">Burger Name</label></br>
   <input type="text" name="burgerName"></br>
 
+  <input id='lat' type="hidden" name="Lat" >
+  <input id='long' type="hidden" name="Long" >
+
   <label for="burgerNotes">Burger Notes</label></br>
   <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>
 
@@ -38,12 +41,12 @@
       <input type="radio" id="star1-1" name="bunRating" value="1" /><label for="star1-1" title="Sucks big time"><span>&#9733</span></label>
     </fieldset></br></br></br></br>
     Topping Rating:</br></br>
-    <fieldset name="Topping" class="rating two"></br>
-      <input type="radio" id="star5-1" name="bunRating" value="5" /><label for="star5-1" title="Rocks!"><span>&#9733</span></label>
-      <input type="radio" id="star4-1" name="bunRating" value="4" /><label for="star4-1" title="Pretty good"><span>&#9733</span></label>
-      <input type="radio" id="star3-1" name="bunRating" value="3" /><label for="star3-1" title="Meh"><span>&#9733</span></label>
-      <input type="radio" id="star2-1" name="bunRating" value="2" /><label for="star2-1" title="Kinda bad"><span>&#9733</span></label>
-      <input type="radio" id="star1-1" name="bunRating" value="1" /><label for="star1-1" title="Sucks big time"><span>&#9733</span></label>
+    <fieldset name="Topping" class="rating three"></br>
+      <input type="radio" id="star5-2" name="toppingRating" value="5" /><label for="star5-2" title="Rocks!"><span>&#9733</span></label>
+      <input type="radio" id="star4-2" name="toppingRating" value="4" /><label for="star4-2" title="Pretty good"><span>&#9733</span></label>
+      <input type="radio" id="star3-2" name="toppingRating" value="3" /><label for="star3-2" title="Meh"><span>&#9733</span></label>
+      <input type="radio" id="star2-2" name="toppingRating" value="2" /><label for="star2-2" title="Kinda bad"><span>&#9733</span></label>
+      <input type="radio" id="star1-2" name="toppingRating" value="1" /><label for="star1-2" title="Sucks big time"><span>&#9733</span></label>
     </fieldset>
     <div style="clear:both;"></div>
   <input type="submit" value="Submit">

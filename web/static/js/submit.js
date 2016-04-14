@@ -33,6 +33,13 @@ function initMap() {
 
   google.maps.event.addListener(map, 'click', function(event) {
      marker.setPosition(event.latLng)
+     $('#lat').val(event.latLng.lat())
+     $('#long').val(event.latLng.lng())
   });
 
 }
+
+$(function() {
+
+
+})

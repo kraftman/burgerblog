@@ -1,3 +1,20 @@
 <!-- views/index.etlua -->
 <h1>list of all burgers </h1>
 <p>Welcome to my page</p>
+
+
+<div id="map"></div>
+
+Top Burgers:
+<div> </div>
+
+<% for i, burger in pairs(top10) do %>
+  <%= burger.totalScore  %>  <%= burger.burgerName  %>
+  </br>
+<% end %>
+</br>
+</br>
+Recent Burgers:
+<% for i, burger in pairs(recent10) do %>
+  <%= burger.createdAt  %> <%= burger.burgerName  %> </br>
+<% end %>

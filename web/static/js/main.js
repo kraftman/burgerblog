@@ -14,9 +14,4 @@ $(function() {
         var userRating = this.value;
         //alert(userRating);
     });
-
-  var x = $("#demo");
-  console.log('getting location')
-
-  
 })
