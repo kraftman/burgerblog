@@ -1,5 +1,11 @@
 
 <form method="post" enctype="multipart/form-data">
+<div id="map"></div>
+<script src="/static/js/submit.js" ></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
+
+
   <input id="imagesInput" type="file" name="somename" size="chars" multiple>
   </br>
 

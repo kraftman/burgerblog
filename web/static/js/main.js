@@ -18,15 +18,5 @@ $(function() {
   var x = $("#demo");
   console.log('getting location')
 
-  if (navigator.geolocation) {
-    console.log('loc available')
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-    console.log('not supported')
-  }
-  function showPosition(position) {
-    console.log('called '+ position.coords.latitude + " " + position.coords.longitude)
-      x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-  }
+  
 })
