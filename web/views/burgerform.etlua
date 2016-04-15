@@ -1,6 +1,6 @@
 
 <form method="post" enctype="multipart/form-data">
-<div id="map"></div>
+<div class ='map' id="map"></div>
 <script src="/static/js/submit.js" ></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
@@ -15,8 +15,8 @@
   <label for="burgerName">Burger Name</label></br>
   <input type="text" name="burgerName"></br>
 
-  <input id='lat' type="hidden" name="Lat" >
-  <input id='long' type="hidden" name="Long" >
+  <input id='lat' type="hidden" name="lat" >
+  <input id='long' type="hidden" name="long" >
 
   <label for="burgerNotes">Burger Notes</label></br>
   <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>

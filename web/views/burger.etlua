@@ -1,0 +1,10 @@
+
+
+
+Name: <%= burger.burgerName  %></br>
+Location: <%= burger.restaurantName  %></br>
+Rating: <%= burger.totalScore  %></br>
+Meat Rating: <%= burger.meatRating  %></br>
+Bun Rating: <%= burger.bunRating  %></br>
+Topping Rating: <%= burger.toppingRating  %></br>
+Notes: <%= burger.burgerNotes  %></br>

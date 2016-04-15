@@ -23,8 +23,8 @@ local function BurgerSubmit(self)
     toppingRating = self.params.toppingRating or 0,
     restaurantName = self.params.restaurantName or 'RName',
     burgerName = self.params.burgerName or 'BName',
-    lat = self.params.lat,
-    long = self.params.long,
+    lat = self.params.lat or 0,
+    long = self.params.long or 0,
 
   }
 

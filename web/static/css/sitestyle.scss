@@ -1,0 +1,84 @@
+
+$dev-highlight: #000;
+
+div {
+  //border: 1px solid $dev-highlight;
+}
+
+$star-color: 9733;
+$other-color: #f70;
+$other-color2: #ddd;
+
+$background1: #fff;
+$background2: #ffd7b5;
+$highlight:	#ffb38a;
+$highlight2:  #ff9248;
+$accent:  #ff6700;
+
+
+body {
+  font-family: 'PT Sans';
+  margin: 0 ;
+  padding: 0;
+}
+
+.top {
+  background-color: $highlight2;
+  height: 40px;
+}
+
+.left {
+  background-color: $background2;
+  float: left;
+  width: 178px;
+}
+
+.main {
+  margin-left: 178px;
+ }
+
+.burger-panel {
+  &:hover {
+    background-color: $background2;
+  }
+}
+
+.rating {
+  float: left;
+
+  :not(:checked) > input {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    top: -9999px;
+  }
+
+  :checked > input ~ label {
+    color: $other-color;
+  }
+
+  :not(:checked) > label {
+    color: $other-color2;
+    cursor: pointer;
+    float: right;
+    font-size: 200%;
+    line-height: 1.2;
+    overflow: hidden;
+    padding: 0 .1em;
+    white-space: nowrap;
+    width: 1em;
+
+    :before {
+      content: $star-color;
+    }
+  }
+}
+
+.minimap {
+  height: 170px;
+  width: 170px;
+}
+
+.map {
+  height: 400px;
+  width: 500px;
+}

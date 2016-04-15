@@ -1,0 +1,25 @@
+
+<div class="top">
+    <a href="<%= url_for('index') %>">Home</a>
+    <a href="<%= url_for('top10') %>">Top10</a>
+</div>
+<div class="left">
+  <div class ='minimap' id="minimap"></div>
+
+  Top Burgers:
+  <div> </div>
+
+
+
+  <% for i, burger in pairs(top10) do %>
+    <%= burger.totalScore  %>
+    <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>"><%= burger.burgerName  %></a>
+    </br>
+  <% end %>
+  </br>
+  </br>
+  Recent Burgers:</br>
+  <% for i, burger in pairs(recent10) do %>
+    <%= os.date("%x", burger.createdAt)  %> <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>"><%= burger.burgerName  %></a> </br>
+  <% end %>
+</div>

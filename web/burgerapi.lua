@@ -2,8 +2,11 @@
 
 local redis = require 'resty.redis'
 local uuid = require 'uuid'
+local util = require("lapis.util")
+local from_json = util.from_json
+local to_json = util.to_json
 
-redis.add_commands("geoadd")
+redis.add_commands("geoadd","georadius")
 
 local api = {}
 
@@ -27,15 +30,11 @@ function api:ConvertListToTable(list)
   return info
 end
 
-function api:GetTopBurgers(count)
-  local red = self:GetRedisConnection()
-  local res, err = red:zrevrange('burgerScores',0, count-1)
-  local ok
-
+function api:GetBurgerInfo(red, burgeIDs)
   local burgers = {}
 
-  if res then
-    for k, v in pairs(res) do
+  if burgeIDs then
+    for k, v in pairs(burgeIDs) do
       ok, err = red:hgetall('burger:'..v)
       if ok then
         burgers[k] = self:ConvertListToTable(ok)
@@ -44,12 +43,44 @@ function api:GetTopBurgers(count)
   end
 
   return burgers
+end
+
+function api:GetBurger(burgerID)
+  local red = self:GetRedisConnection()
+  local res, err = red:hgetall('burger:'..burgerID)
+  if not res then
+    ngx.log(ngx.ERR, 'unable to load burger info:',err)
+    red:close()
+    return
+  end
+
+  return self:ConvertListToTable(res)
+end
+
+function api:GetNearestBurgers(lat, long, distance)
+  local red = self:GetRedisConnection()
+  local res, err = red:georadius('burgerLocations', lat, long, distance, 'mi')
+
+  if not res then
+    ngx.log(ngx.ERR, 'unable to load burger locations: ',err)
+    return
+  end
+
+  return self:GetBurgerInfo(red, res)
+end
+
+function api:GetTopBurgers(count)
+  local red = self:GetRedisConnection()
+  local res, err = red:zrevrange('burgerScores',0, count-1)
+  local ok
+
+  return self:GetBurgerInfo(red, res)
 
 end
 
-function api:GetRecentBurgers(count)
+function api:GetRecentBurgers(startAt, endAt)
   local red = self:GetRedisConnection()
-  local res, err = red:zrevrange('burgerDates',0, count-1)
+  local res, err = red:zrevrange('burgerDates',startAt, endAt)
   local ok
 
   local burgers = {}
@@ -116,8 +147,8 @@ function api:CreateBurgerPost(burgerInfo)
   if not ok then
     ngx.log(ngx.ERR, 'unable to zadd: ', err)
   end
-
-  ok, err = red:geoadd(burgerInfo.burgerID, burgerInfo.lat, burgerInfo.long)
+  print(burgerInfo.lat, burgerInfo.long)
+  ok, err = red:geoadd('burgerLocations', burgerInfo.lat, burgerInfo.long, burgerInfo.burgerID)
   if not ok then
     ngx.log(ngx.ERR, 'eek: ', err)
   end

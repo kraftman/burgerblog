@@ -1,6 +1,8 @@
 redis:
   restart: always
-  image: redis:3.0.7-alpine
+  image: zchee/redis:unstable
+  volumes:
+    - ./redis:/data
   expose:
     - "6378"
 web:
