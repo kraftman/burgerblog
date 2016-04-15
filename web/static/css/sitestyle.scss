@@ -43,6 +43,28 @@ body {
   }
 }
 
+.burger-stats {
+  display: inline-block;
+}
+
+.burger-info {
+  display: inline-block;
+}
+
+.burger-icon {
+  height: 150px;
+  width: 150px;
+  margin: 20px;
+}
+
+.title-row {
+  color: white;
+  font-size: 120%;
+  text-decoration: none;
+  line-height: 40px;
+  margin: 10px;
+}
+
 .rating {
   float: left;
 

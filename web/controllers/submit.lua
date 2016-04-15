@@ -25,8 +25,16 @@ local function BurgerSubmit(self)
     burgerName = self.params.burgerName or 'BName',
     lat = self.params.lat or 0,
     long = self.params.long or 0,
-
   }
+  print(to_json(self.params ))
+
+  if self.params.images then
+    for k,v in pairs(self.params.images) do
+      burgerInfo['img:'..k] = v.content
+      
+      burgerInfo.imgCount = k
+    end
+  end
 
   api:CreateBurgerPost(burgerInfo)
 

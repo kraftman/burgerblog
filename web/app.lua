@@ -27,10 +27,22 @@ app:get("index", "/", function(self)
   return {render = true}
 end)
 
+app:get('image', '/image/:burgerID',function(self)
+  local burger = api:GetBurger(self.params.burgerID)
+
+  if burger['img:1'] then
+    ngx.say(burger['img:1'])
+    ngx.exit()
+  end
+
+end )
+
 app:get("top10", "/top10", function(self)
   --return "Welcome to Lapis " .. require("lapis.version")
   --load all burgerapi
-  return 'top 10 of all time!'
+  self.burgers = self.top10
+
+  return {render = 'index'}
 end)
 
 app:get("faq", "/faq", function(self)

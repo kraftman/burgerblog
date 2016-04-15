@@ -1,7 +1,8 @@
 
 <div class="top">
-    <a href="<%= url_for('index') %>">Home</a>
-    <a href="<%= url_for('top10') %>">Top10</a>
+    <a class="title-row" href="<%= url_for('index') %>">Home</a>
+    <a class="title-row" href="<%= url_for('top10') %>">Top10</a>
+    <a class="title-row" href="<%= url_for('faq') %>">FAQ</a>
 </div>
 <div class="left">
   <div class ='minimap' id="minimap"></div>
