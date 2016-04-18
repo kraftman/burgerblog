@@ -6,7 +6,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
 
 
-  <input id="imagesInput" type="file" name="images" size="chars" multiple>
+  <input id="imagesInput" type="file" name="images[]" size="chars" multiple>
   </br>
 
   <label for="restaurantName">Restaurant Name</label></br>
