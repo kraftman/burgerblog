@@ -22,11 +22,12 @@
   </script>
 </head>
   <body>
-    <% render("views.navigation") %>
-    <div class="main">
-
-      <p id="demo"></p>
-      <% content_for("inner") %>
+    <div class='center-page'>
+      <% render("views.navigation") %>
+      <div class="main">
+        <p id="demo"></p>
+        <% content_for("inner") %>
+      </div>
     </div>
   </body>
 </html>

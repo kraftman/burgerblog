@@ -1,4 +1,5 @@
 
+<img class='burger-image-main' src='/static/uploads/<%= burger["img:filename"] %>'alt="burger image">
 
 
 Name: <%= burger.burgerName  %></br>
@@ -7,4 +8,7 @@ Rating: <%= burger.totalScore  %></br>
 Meat Rating: <%= burger.meatRating  %></br>
 Bun Rating: <%= burger.bunRating  %></br>
 Topping Rating: <%= burger.toppingRating  %></br>
-Notes: <%= burger.burgerNotes  %></br>
+
+<div class='burger-notes'>
+  Notes: <%= burger.burgerNotes  %></br>
+</div>

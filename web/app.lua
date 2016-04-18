@@ -27,17 +27,6 @@ app:get("index", "/", function(self)
   return {render = true}
 end)
 
-app:get('image', '/image/:burgerID',function(self)
-  local burger = api:GetBurger(self.params.burgerID)
-
-  if burger['img:1'] then
-    ngx.header.content_type = burger['img:1:contentType'];
-    ngx.say(burger['img:1:data'])
-    ngx.exit()
-  end
-
-end )
-
 app:get("top10", "/top10", function(self)
   --return "Welcome to Lapis " .. require("lapis.version")
   --load all burgerapi
@@ -63,18 +52,8 @@ app:get('nearest','/api/nearest/:lat/:long',function(self)
 
 end)
 
-app:get("viewburger", "/burger/:burgerID", function(self)
-  -- load burger info from api
-  -- add to self
-  self.burger = api:GetBurger(self.params.burgerID)
-  if not self.burger then
-    return { render = "error404", status = 404}
-  end
-  return {render = 'burger'}
-end)
 
-
-require 'submit':Register(app)
+require 'burger':Register(app)
 
 
 return app

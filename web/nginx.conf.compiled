@@ -13,6 +13,7 @@ http {
   resolver '127.0.0.1';
 
   lua_package_path "./controllers/?.lua;;./lib/?.lua;;";
+  client_max_body_size 10m;
 
   server {
     listen 8080;

@@ -2,7 +2,7 @@
 <% for i, burger in pairs(burgers) do %>
   <div class='burger-panel'>
 
-  <img class='burger-icon' alt="burger image">
+  <img class='burger-icon' src='/static/uploads/<%= burger["img:iconName"] %>'alt="burger image">
 
   <span class='burger-stats'>
     Name: <%= burger.burgerName  %></br>

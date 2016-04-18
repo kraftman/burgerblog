@@ -130,9 +130,9 @@ function api:CreateBurgerPost(burgerInfo)
 
     ]]
   local red = self:GetRedisConnection()
-  burgerInfo.burgerID = uuid.generate_random()
   burgerInfo.createdAt = ngx.time()
   burgerInfo.totalScore = burgerInfo.meatRating + burgerInfo.bunRating + burgerInfo.toppingRating
+  burgerInfo.modApproved = 'false'
   local ok, err = red:hmset('burger:'..burgerInfo.burgerID, burgerInfo)
   if not ok then
     ngx.log(ngx.ERR, 'unable to write to redis: ', err)
