@@ -15,7 +15,7 @@ function api:GetRedisConnection()
   local red = redis:new()
 	local ok, err = red:connect("redis", 6379)
 	if not ok then
-	    ngx.say("failed to connect: ", err)
+	    ngx.log(ngx.ERR, "failed to connect: ", err)
 	    return
 	end
   return red

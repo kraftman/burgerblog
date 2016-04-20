@@ -1,17 +1,18 @@
-redis:
-  restart: always
-  image: zchee/redis:unstable
-  volumes:
-    - ./redis:/data
-  expose:
-    - "6378"
-web:
-  build: web/.
-  ports:
-    - "8080:8080"
-  links:
-    - redis
-  volumes:
-    - ./web:/opt/openresty/nginx/conf
-  entrypoint: ""
-  command:  bash -c "service dnsmasq restart && lapis server"
+version: '2'
+
+services:
+  redis:
+    restart: always
+    image: zchee/redis:unstable
+    volumes:
+      - ./redis:/data
+    expose:
+      - "6378"
+  web:
+    build: web/.
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./web:/opt/openresty/nginx/conf
+    entrypoint: ""
+    command:  bash -c "lapis server"
