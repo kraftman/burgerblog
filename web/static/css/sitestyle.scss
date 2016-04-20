@@ -24,7 +24,7 @@ body {
 
 .center-page {
   width: 960px;
-  height: 900px;
+  height: auto;
   left:0;
   right:0;
   margin-left:auto;
@@ -35,9 +35,6 @@ body {
 
 }
 
-.main {
-  width: 782;
-}
 
 .top {
   background-color: $highlight2;
@@ -48,6 +45,7 @@ body {
   background-color: $background2;
   float: left;
   width: 178px;
+  height: 100vh;
 }
 
 .main {
