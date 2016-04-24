@@ -2,15 +2,10 @@
 
 local M = {}
 
-local util = require("lapis.util")
-local from_json = util.from_json
-local to_json = util.to_json
 local respond_to = (require 'lapis.application').respond_to
 local api = require 'burgerapi'
 local magick = require("magick")
 
-local resty_sha1 = require "resty.sha1"
-local upload = require "resty.upload"
 
 local uuid = require 'uuid'
 
@@ -36,16 +31,21 @@ local function WriteImage(self, burgerInfo)
   end
 
   local fileName = burgerInfo.burgerID..'.'..imageExtension
-  local iconName = burgerInfo.burgerID..'-ico.'..imageExtension
+  local iconName150 = burgerInfo.burgerID..'-ico150.'..imageExtension
   local savePath = 'static/uploads/'
 
   burgerInfo['img:filename'] = fileName
-  burgerInfo['img:iconName'] = iconName
+  burgerInfo['img:iconName'] = iconName150
   local file, err = io.open(savePath..fileName, 'w+')
+
+  if err then
+    ngx.log(ngx.ERR, 'error openign file: ', err)
+  end
+
   file:write(self.params.burgerImage.content)
   file:close()
 
-  magick.thumb(savePath..fileName, "150x150", savePath..iconName)
+  magick.thumb(savePath..fileName, "150x150", savePath..iconName150)
 
 end
 

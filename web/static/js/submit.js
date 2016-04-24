@@ -13,6 +13,8 @@ if (navigator.geolocation) {
 function showPosition(position) {
    lat = position.coords.latitude
    long = position.coords.longitude
+   console.log('got loc: ',lat, long)
+
 }
 
 function initMap() {

@@ -2,7 +2,7 @@
 <div class="top">
     <a class="title-row" href="<%= url_for('index') %>">Home</a>
     <a class="title-row" href="<%= url_for('top10') %>">Top10</a>
-    <a class="title-row" href="<%= url_for('faq') %>">FAQ</a>
+
     <% if session.loggedIn then %>
       <a class="title-row" href="<%= url_for('submit') %>">Submit</a>
       <a class="title-row" href="<%= url_for('logout') %>">Logout</a>
@@ -13,8 +13,7 @@
 <div class="left">
   <div class ='minimap' id="minimap"></div>
 
-
-  Top Burgers:
+  <h1 class='table-header'>Top Burgers:</h1>
   <div> </div>
 
 
@@ -26,7 +25,7 @@
   <% end %>
   </br>
   </br>
-  Recent Burgers:</br>
+  <h1 class='table-header'>Recent Burgers:</h1>
   <% for i, burger in pairs(recent10) do %>
     <%= os.date("%x", burger.createdAt)  %> <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>"><%= burger.burgerName  %></a> </br>
   <% end %>

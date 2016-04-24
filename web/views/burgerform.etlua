@@ -1,52 +1,53 @@
+<div class='burger-content'>
+  <form id='burgerForm' method="post" enctype="multipart/form-data">
+  <div class ='map' id="map"></div>
+  <script src="/static/js/submit.js" ></script>
 
-<form id='burgerForm' method="post" enctype="multipart/form-data">
-<div class ='map' id="map"></div>
-<script src="/static/js/submit.js" ></script>
-
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
 
 
-  <input id="imagesInput" type="file" name="burgerImage" >
-  </br>
+    <input id="imagesInput" type="file" name="burgerImage" >
+    </br>
 
-  <label for="restaurantName">Restaurant Name</label></br>
-  <input type="text" name="restaurantName"></br>
+    <label for="restaurantName">Restaurant Name</label></br>
+    <input type="text" name="restaurantName"></br>
 
-  <label for="burgerName">Burger Name</label></br>
-  <input type="text" name="burgerName"></br>
+    <label for="burgerName">Burger Name</label></br>
+    <input type="text" name="burgerName"></br>
 
-  <input id='lat' type="hidden" name="lat" >
-  <input id='long' type="hidden" name="long" >
+    <input id='lat' type="hidden" name="lat" >
+    <input id='long' type="hidden" name="long" >
 
-  <label for="burgerNotes">Burger Notes</label></br>
-  <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>
+    <label for="burgerNotes">Burger Notes</label></br>
+    <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>
 
-  <div>
-    Meat Rating:</br>
-    <fieldset name="Meat" class="rating one">
-      <input type="radio" id="star5" name="meatRating" value="5" /><label for="star5" title="Rocks!"><span>&#9733</span></label>
-      <input type="radio" id="star4" name="meatRating" value="4" /><label for="star4" title="Pretty good"><span>&#9733</span></label>
-      <input type="radio" id="star3" name="meatRating" value="3" /><label for="star3" title="Meh"><span>&#9733</span></label>
-      <input type="radio" id="star2" name="meatRating" value="2" /><label for="star2" title="Kinda bad"><span>&#9733</span></label>
-      <input type="radio" id="star1" name="meatRating" value="1" /><label for="star1" title="Sucks big time"><span>&#9733</span></label>
-    </fieldset></br></br></br></br>
-    Bun Rating:</br>
-    <div style="clear:both;"></div></br>
-    <fieldset name="Bun" class="rating two">
-      <input type="radio" id="star5-1" name="bunRating" value="5" /><label for="star5-1" title="Rocks!"><span>&#9733</span></label>
-      <input type="radio" id="star4-1" name="bunRating" value="4" /><label for="star4-1" title="Pretty good"><span>&#9733</span></label>
-      <input type="radio" id="star3-1" name="bunRating" value="3" /><label for="star3-1" title="Meh"><span>&#9733</span></label>
-      <input type="radio" id="star2-1" name="bunRating" value="2" /><label for="star2-1" title="Kinda bad"><span>&#9733</span></label>
-      <input type="radio" id="star1-1" name="bunRating" value="1" /><label for="star1-1" title="Sucks big time"><span>&#9733</span></label>
-    </fieldset></br></br></br></br>
-    Topping Rating:</br></br>
-    <fieldset name="Topping" class="rating three"></br>
-      <input type="radio" id="star5-2" name="toppingRating" value="5" /><label for="star5-2" title="Rocks!"><span>&#9733</span></label>
-      <input type="radio" id="star4-2" name="toppingRating" value="4" /><label for="star4-2" title="Pretty good"><span>&#9733</span></label>
-      <input type="radio" id="star3-2" name="toppingRating" value="3" /><label for="star3-2" title="Meh"><span>&#9733</span></label>
-      <input type="radio" id="star2-2" name="toppingRating" value="2" /><label for="star2-2" title="Kinda bad"><span>&#9733</span></label>
-      <input type="radio" id="star1-2" name="toppingRating" value="1" /><label for="star1-2" title="Sucks big time"><span>&#9733</span></label>
-    </fieldset>
-    <div style="clear:both;"></div>
-  <input id="submitBurger" type="submit" value="Submit">
-<form>
+    <div>
+      Meat Rating:</br>
+      <fieldset name="Meat" class="rating one">
+        <input type="radio" id="star5" name="meatRating" value="5" /><label for="star5" title="Rocks!"><span>&#9733</span></label>
+        <input type="radio" id="star4" name="meatRating" value="4" /><label for="star4" title="Pretty good"><span>&#9733</span></label>
+        <input type="radio" id="star3" name="meatRating" value="3" /><label for="star3" title="Meh"><span>&#9733</span></label>
+        <input type="radio" id="star2" name="meatRating" value="2" /><label for="star2" title="Kinda bad"><span>&#9733</span></label>
+        <input type="radio" id="star1" name="meatRating" value="1" /><label for="star1" title="Sucks big time"><span>&#9733</span></label>
+      </fieldset></br></br></br></br>
+      Bun Rating:</br>
+      <div style="clear:both;"></div></br>
+      <fieldset name="Bun" class="rating two">
+        <input type="radio" id="star5-1" name="bunRating" value="5" /><label for="star5-1" title="Rocks!"><span>&#9733</span></label>
+        <input type="radio" id="star4-1" name="bunRating" value="4" /><label for="star4-1" title="Pretty good"><span>&#9733</span></label>
+        <input type="radio" id="star3-1" name="bunRating" value="3" /><label for="star3-1" title="Meh"><span>&#9733</span></label>
+        <input type="radio" id="star2-1" name="bunRating" value="2" /><label for="star2-1" title="Kinda bad"><span>&#9733</span></label>
+        <input type="radio" id="star1-1" name="bunRating" value="1" /><label for="star1-1" title="Sucks big time"><span>&#9733</span></label>
+      </fieldset></br></br></br></br>
+      Topping Rating:</br></br>
+      <fieldset name="Topping" class="rating three"></br>
+        <input type="radio" id="star5-2" name="toppingRating" value="5" /><label for="star5-2" title="Rocks!"><span>&#9733</span></label>
+        <input type="radio" id="star4-2" name="toppingRating" value="4" /><label for="star4-2" title="Pretty good"><span>&#9733</span></label>
+        <input type="radio" id="star3-2" name="toppingRating" value="3" /><label for="star3-2" title="Meh"><span>&#9733</span></label>
+        <input type="radio" id="star2-2" name="toppingRating" value="2" /><label for="star2-2" title="Kinda bad"><span>&#9733</span></label>
+        <input type="radio" id="star1-2" name="toppingRating" value="1" /><label for="star1-2" title="Sucks big time"><span>&#9733</span></label>
+      </fieldset>
+      <div style="clear:both;"></div>
+    <input id="submitBurger" type="submit" value="Submit">
+  <form>
+</div>

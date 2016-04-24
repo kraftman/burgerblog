@@ -14,6 +14,7 @@ $background2: #ffd7b5;
 $highlight:	#ffb38a;
 $highlight2:  #ff9248;
 $accent:  #ff6700;
+$white: #000;
 
 
 body {
@@ -23,23 +24,30 @@ body {
 }
 
 a {
-    color: #000;
-    text-decoration: none;
+  color: $white;
+  text-decoration: none;
 }
 
 .center-page {
-  width: 960px;
   height: auto;
-  left:0;
-  right:0;
-  margin-left:auto;
-  margin-right:auto;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 2px;
-  padding-left: 3px;
-  padding-right: 3px;
-
+  right: 0;
+  width: 960px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 }
 
+.table-header {
+  text-align: center;
+}
+
+.burger-content {
+  padding: 10px;
+}
 
 .top {
   background-color: $highlight2;
@@ -49,12 +57,15 @@ a {
 .left {
   background-color: $background2;
   float: left;
-  width: 178px;
   height: 100vh;
+  width: 178px;
+  @media (max-width: 800px) {
+    display: none;
+  }
 }
 
 .main {
-  margin-left: 178px;
+  float: left;
  }
 
 .burger-panel {
@@ -72,22 +83,17 @@ a {
 }
 
 .burger-icon {
-  height: 150px;
-  width: 150px;
-  margin: 20px;
-}
-
-.burger-icon {
   height: 100px;
+  margin: 20px;
   width: 100px;
 }
 
 .title-row {
-  color: white;
+  color: $white;
   font-size: 120%;
-  text-decoration: none;
   line-height: 40px;
   margin: 10px;
+  text-decoration: none;
 }
 
 .rating {
@@ -122,11 +128,15 @@ a {
 
 .minimap {
   height: 160px;
-  width: 160px;
   margin: 10px;
+  width: 160px;
 }
 
 .map {
   height: 400px;
   width: 500px;
+  @media (max-width: 800px) {
+    height: 100px;
+    width: 100px;
+  }
 }

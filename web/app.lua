@@ -6,9 +6,7 @@ app.layout = require "views.layout"
 local respond_to = (require 'lapis.application').respond_to
 
 
-local util = require("lapis.util")
-local from_json = util.from_json
-local to_json = util.to_json
+
 
 app:before_filter(function(self)
   --always load these as they are in the sidebar
@@ -62,6 +60,8 @@ local function DoLogin(self)
   if not self.params.username then
     return 'no username'
   end
+  self.params.username = self.params.username:lower()
+
   if not self.params.password then
     return 'no password!'
   end
@@ -71,7 +71,7 @@ local function DoLogin(self)
 
   local hash = '4c86dc39dc6c2d9012e62213c6cb5aa5'
   local digest = ngx.md5(salt..self.params.password)
-  
+
   if digest == hash then
     self.session.loggedIn = true
     self.session.username = self.params.username
