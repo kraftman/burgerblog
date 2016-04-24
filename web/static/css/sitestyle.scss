@@ -71,6 +71,7 @@ a {
  }
 
 .burger-panel {
+  float: left;
   width: auto;
   &:hover {
     background-color: $background2;
