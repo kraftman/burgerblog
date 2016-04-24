@@ -1,5 +1,5 @@
 
-<form method="post" enctype="multipart/form-data">
+<form id='burgerForm' method="post" enctype="multipart/form-data">
 <div class ='map' id="map"></div>
 <script src="/static/js/submit.js" ></script>
 
@@ -20,7 +20,6 @@
 
   <label for="burgerNotes">Burger Notes</label></br>
   <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>
-
 
   <div>
     Meat Rating:</br>
@@ -49,5 +48,5 @@
       <input type="radio" id="star1-2" name="toppingRating" value="1" /><label for="star1-2" title="Sucks big time"><span>&#9733</span></label>
     </fieldset>
     <div style="clear:both;"></div>
-  <input type="submit" value="Submit">
+  <input id="submitBurger" type="submit" value="Submit">
 <form>

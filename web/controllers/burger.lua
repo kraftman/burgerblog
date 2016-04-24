@@ -22,7 +22,10 @@ extTable['bmp'] = 'image/bmp'
 extTable['svg'] = 'image/svg'
 extTable['gif'] = 'image/gif'
 
-local function BurgerForm()
+local function BurgerForm(self)
+  if not self.session.loggedIn then
+    return 'must be logged in to submit burgers!'
+  end
   return {render = 'burgerform'}
 end
 
@@ -47,8 +50,9 @@ local function WriteImage(self, burgerInfo)
 end
 
 local function BurgerSubmit(self)
-
-
+  if not self.session.loggedIn then
+    return 'must be logged in to submit burgers!'
+  end
 
 
   local burgerInfo = {
@@ -72,7 +76,7 @@ local function BurgerSubmit(self)
 end
 
 local function ViewBurger(self)
-  
+
   self.burger = api:GetBurger(self.params.burgerID)
   if not self.burger then
     return { render = "error404", status = 404}

@@ -36,10 +36,4 @@ function initMap() {
      $('#lat').val(event.latLng.lat())
      $('#long').val(event.latLng.lng())
   });
-
 }
-
-$(function() {
-
-
-})
