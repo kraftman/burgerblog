@@ -65,27 +65,43 @@ a {
 }
 
 .main {
-  float: left;
+  width: 100%;
+  height: 100vh;
+  float: clear;
  }
 
 .burger-panel {
+  width: auto;
   &:hover {
     background-color: $background2;
   }
+  height: 140px;
 }
 
 .burger-stats {
-  display: inline-block;
+  float: left;
+  vertical-align: middle;
+  height: 100%;
+  margin: 20px;
 }
 
 .burger-info {
   display: inline-block;
+  margin: 20px;
 }
 
 .burger-icon {
+  float: left;
   height: 100px;
-  margin: 20px;
   width: 100px;
+  margin: 20px;
+}
+
+.rankItem {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: block;
+  text-align: center;
 }
 
 .title-row {
