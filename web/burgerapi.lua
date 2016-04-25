@@ -130,20 +130,28 @@ function api:CreateBurgerPost(burgerInfo)
 
     ]]
   local red = self:GetRedisConnection()
-  burgerInfo.createdAt = ngx.time()
-  burgerInfo.totalScore = burgerInfo.meatRating + burgerInfo.bunRating + burgerInfo.toppingRating
+
+  burgerInfo.burgerScore = burgerInfo.meatRating + burgerInfo.bunRating + burgerInfo.toppingRating
+
+  burgerInfo.mealScore = burgerInfo.meatRating + burgerInfo.bunRating + burgerInfo.toppingRating + burgerInfo.sideRating
+
   burgerInfo.modApproved = 'false'
   local ok, err = red:hmset('burger:'..burgerInfo.burgerID, burgerInfo)
   if not ok then
     ngx.log(ngx.ERR, 'unable to write to redis: ', err)
   end
 
-  ok, err = red:zadd('burgerScores',burgerInfo.totalScore, burgerInfo.burgerID)
+  ok, err = red:zadd('burgerScores',burgerInfo.burgerScore, burgerInfo.burgerID)
   if not ok then
     ngx.log(ngx.ERR, 'unable to add to set: ',err)
   end
 
-  ok, err = red:zadd('burgerDates', burgerInfo.createdAt, burgerInfo.burgerID)
+  ok, err = red:zadd('mealScores',burgerInfo.mealScore, burgerInfo.burgerID)
+  if not ok then
+    ngx.log(ngx.ERR, 'unable to add to set: ',err)
+  end
+
+  ok, err = red:zadd('burgerDates', burgerInfo.dateEaten, burgerInfo.burgerID)
   if not ok then
     ngx.log(ngx.ERR, 'unable to zadd: ', err)
   end

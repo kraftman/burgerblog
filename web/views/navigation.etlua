@@ -16,9 +16,8 @@
   <h1 class='table-header'>Top Burgers:</h1>
 
   <% for i, burger in pairs(top10) do %>
-
     <a class='rankItem' href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
-      <%= burger.totalScore  %>
+      <%= burger.burgerScore  %>
       <%= burger.burgerName %>
     </a>
     </br>

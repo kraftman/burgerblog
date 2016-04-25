@@ -21,6 +21,11 @@ local function BurgerForm(self)
   if not self.session.loggedIn then
     return 'must be logged in to submit burgers!'
   end
+  if self.params.burgerID then
+    self.burger = api:GetBurger(self.params.burgerID)
+  else
+    self.burger = {}
+  end
   return {render = 'burgerform'}
 end
 
@@ -55,16 +60,34 @@ local function BurgerSubmit(self)
   end
 
 
+  local dateEaten = os.time()
+
+  if self.params.dateEaten then
+    local year, month, day = self.params.dateEaten:match('(%d%d%d%d)%-(%d%d)%-(%d%d)')
+    if day then
+      dateEaten = os.time({day = day, month = month, year = year})
+    else
+      ngx.log(ngx.ERR, 'unable to parse date: ', self.params.dateEaten)
+    end
+  end
+
   local burgerInfo = {
     meatRating = self.params.meatRating or 0,
     bunRating = self.params.bunRating or 0,
     toppingRating = self.params.toppingRating or 0,
+    sideRating = self.params.sideRating or 0,
     restaurantName = self.params.restaurantName or 'RName',
     burgerName = self.params.burgerName or 'BName',
     lat = self.params.lat or 0,
     long = self.params.long or 0,
-    burgerID = uuid.generate_random()
+    burgerID = uuid.generate_random(),
+    dateEaten = dateEaten
   }
+
+  if self.params.burgerID then
+    burgerInfo.burgerID = self.params.burgerID
+    burgerInfo.createdAt = os.time()
+  end
 
   if self.params.burgerImage then
     WriteImage(self, burgerInfo)
@@ -86,6 +109,8 @@ end
 
 function M:Register(app)
   app:match('submit','/submit',respond_to({GET = BurgerForm,POST = BurgerSubmit}))
+  app:match('update','/submit/:burgerID',respond_to({GET = BurgerForm,POST = BurgerSubmit}))
+
   app:get("viewburger", "/burger/:burgerID", ViewBurger)
 end
 

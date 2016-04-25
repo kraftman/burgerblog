@@ -9,11 +9,14 @@
     <input id="imagesInput" type="file" name="burgerImage" >
     </br>
 
+    <label for="dateEaten">Date</label></br>
+    <input type="date" name="dateEaten"></br>
+
     <label for="restaurantName">Restaurant Name</label></br>
-    <input type="text" name="restaurantName"></br>
+    <input type="text" name="restaurantName" value ='<%= burger.restaurantName or '' %>'></br>
 
     <label for="burgerName">Burger Name</label></br>
-    <input type="text" name="burgerName"></br>
+    <input type="text" name="burgerName" value ='<%= burger.burgerName or '' %>'></br>
 
     <input id='lat' type="hidden" name="lat" >
     <input id='long' type="hidden" name="long" >
@@ -23,31 +26,13 @@
 
     <div>
       Meat Rating:</br>
-      <fieldset name="Meat" class="rating one">
-        <input type="radio" id="star5" name="meatRating" value="5" /><label for="star5" title="Rocks!"><span>&#9733</span></label>
-        <input type="radio" id="star4" name="meatRating" value="4" /><label for="star4" title="Pretty good"><span>&#9733</span></label>
-        <input type="radio" id="star3" name="meatRating" value="3" /><label for="star3" title="Meh"><span>&#9733</span></label>
-        <input type="radio" id="star2" name="meatRating" value="2" /><label for="star2" title="Kinda bad"><span>&#9733</span></label>
-        <input type="radio" id="star1" name="meatRating" value="1" /><label for="star1" title="Sucks big time"><span>&#9733</span></label>
-      </fieldset></br></br></br></br>
+      <input type="range" name="meatRating" min="0" max="10" value ='<%= burger.meatRating or 0 %>'>
       Bun Rating:</br>
-      <div style="clear:both;"></div></br>
-      <fieldset name="Bun" class="rating two">
-        <input type="radio" id="star5-1" name="bunRating" value="5" /><label for="star5-1" title="Rocks!"><span>&#9733</span></label>
-        <input type="radio" id="star4-1" name="bunRating" value="4" /><label for="star4-1" title="Pretty good"><span>&#9733</span></label>
-        <input type="radio" id="star3-1" name="bunRating" value="3" /><label for="star3-1" title="Meh"><span>&#9733</span></label>
-        <input type="radio" id="star2-1" name="bunRating" value="2" /><label for="star2-1" title="Kinda bad"><span>&#9733</span></label>
-        <input type="radio" id="star1-1" name="bunRating" value="1" /><label for="star1-1" title="Sucks big time"><span>&#9733</span></label>
-      </fieldset></br></br></br></br>
+      <input type="range" name="bunRating" min="0" max="10" value ='<%= burger.bunRating or 0 %>'>
       Topping Rating:</br></br>
-      <fieldset name="Topping" class="rating three"></br>
-        <input type="radio" id="star5-2" name="toppingRating" value="5" /><label for="star5-2" title="Rocks!"><span>&#9733</span></label>
-        <input type="radio" id="star4-2" name="toppingRating" value="4" /><label for="star4-2" title="Pretty good"><span>&#9733</span></label>
-        <input type="radio" id="star3-2" name="toppingRating" value="3" /><label for="star3-2" title="Meh"><span>&#9733</span></label>
-        <input type="radio" id="star2-2" name="toppingRating" value="2" /><label for="star2-2" title="Kinda bad"><span>&#9733</span></label>
-        <input type="radio" id="star1-2" name="toppingRating" value="1" /><label for="star1-2" title="Sucks big time"><span>&#9733</span></label>
-      </fieldset>
-      <div style="clear:both;"></div>
+      <input type="range" name="toppingRating" min="0" max="10" value ='<%= burger.toppingRating or 0 %>'>
+      Side Rating:</br></br>
+      <input type="range" name="sideRating" min="0" max="10" value ='<%= burger.sideRating or 0 %>'>
     <input id="submitBurger" type="submit" value="Submit">
   <form>
 </div>
