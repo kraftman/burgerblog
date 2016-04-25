@@ -1,0 +1,9 @@
+Are you sure you want do delete this burger?
+
+<form action="<%= url_for('api-delete',{burgerID = params.burgerID}) %>">
+    <input type="submit" value="Yes">
+</form>
+
+<form action="<%= url_for('index') %>">
+    <input type="submit" value="Yes">
+</form>

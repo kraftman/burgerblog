@@ -40,6 +40,24 @@ app:get("faq", "/faq", function(self)
   return 'faq'
 end)
 
+app:get("api-delete",'/api/delete/:burgerID',function(self)
+  if not self.session.loggedIn then
+    return {status = 401}
+  end
+
+  local ok, err = api:DeleteBurger(self.params.burgerID)
+  if ok then
+    return {redirect_to = self:url_for("index")}
+  else
+    return 'error deleting burger: ',err
+  end
+
+end)
+
+app:get('delete','/delete/:burgerID', function(self)
+  return {render = true}
+end)
+
 app:get('nearest','/api/nearest/:lat/:long',function(self)
   local lat = self.params.lat or 0
   local long = self.params.long or 0

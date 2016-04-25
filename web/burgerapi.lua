@@ -155,5 +155,31 @@ function api:CreateBurgerPost(burgerInfo)
 
 end
 
+function api:DeleteBurger(burgerID)
+  local red = self:GetRedisConnection()
+  local ok , err = red:del('burger:'..burgerID)
+  if not ok then
+    ngx.log(ngx.ERR, 'eek: ', err)
+    return false, err
+  end
+  ok, err = red:zrem('burgerDates', burgerID)
+  if not ok then
+    ngx.log(ngx.ERR, 'eek: ', err)
+    return false, err
+  end
+  ok, err = red:zrem('burgerScores',burgerID)
+  if not ok then
+    ngx.log(ngx.ERR, 'eek: ', err)
+    return false, err
+  end
+  ok, err = red:zrem('burgerLocations',burgerID)
+  if not ok then
+    ngx.log(ngx.ERR, 'eek: ', err)
+    return false, err
+  end
+  return true
+
+end
+
 
 return api
