@@ -8,7 +8,7 @@ services:
       - ./redis:/data
     expose:
       - "6378"
-  web:
+  burgerblog:
     build: web/.
     ports:
       - "8080:8080"
@@ -16,3 +16,7 @@ services:
       - ./web:/opt/openresty/nginx/conf
     entrypoint: ""
     command:  bash -c "lapis server"
+networks:
+  default:
+    external:
+      name: webserver_default
