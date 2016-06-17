@@ -50,7 +50,7 @@ local function WriteImage(self, burgerInfo)
   file:write(self.params.burgerImage.content)
   file:close()
 
-  magick.thumb(savePath..fileName, "150x150", savePath..iconName150)
+  magick.thumb(savePath..fileName, "150x150#", savePath..iconName150)
 
 end
 
