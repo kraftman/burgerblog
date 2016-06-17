@@ -1,5 +1,6 @@
 var lat = 51.6660128
 var long = -0.4790519999999999
+var map
 
 if (navigator.geolocation) {
   console.log('loc available')
@@ -12,6 +13,9 @@ if (navigator.geolocation) {
 function showPosition(position) {
    lat = position.coords.latitude
    long = position.coords.longitude
+   console.log(lat, long)
+   map.panTo(new google.maps.LatLng(parseFloat(lat), parseFloat(long)))
+   map.setZoom(10)
 }
 
 $(function() {
@@ -34,7 +38,7 @@ $(function() {
 function initMiniMap() {
   var myLatlng = {lat: lat, lng: long};
   var mapDiv = document.getElementById('minimap');
-  var map = new google.maps.Map(mapDiv, {
+   map = new google.maps.Map(mapDiv, {
     center: {lat: lat, lng: long},
     zoom: 8
   });
@@ -49,6 +53,7 @@ function initMiniMap() {
      console.log(parseFloat(burgerInfo.lat), parseFloat(burgerInfo.long))
      console.log(long)
      var newLatLng = new google.maps.LatLng(parseFloat(burgerInfo.lat), parseFloat(burgerInfo.long))
+     console.log(newLatLng)
 
      marker.setPosition(newLatLng);
      marker.setLabel(burgerInfo.burgerName)

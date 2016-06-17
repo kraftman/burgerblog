@@ -8,7 +8,7 @@
       <span class='burger-stats'>
         Name: <%= burger.burgerName  %></br>
         Location: <%= burger.restaurantName  %></br>
-        Rating: <%= burger.totalScore  %></br>
+        Rating: <%= burger.burgerScore  %></br>
         Meat Rating: <%= burger.meatRating  %></br>
         Bun Rating: <%= burger.bunRating  %></br>
         Topping Rating: <%= burger.toppingRating  %></br>
