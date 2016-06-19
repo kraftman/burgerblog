@@ -1,0 +1,7 @@
+<script src="/static/js/map.js" ></script>
+<div class='burger-content'>
+  <div class ='mainmap' id="mainmap"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMainMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
+
+</div>
