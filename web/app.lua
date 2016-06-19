@@ -100,6 +100,11 @@ local function DoLogin(self)
  end
 end
 
+local function ShowMap()
+  return {render = true}
+end
+
+app:get('map','/map', ShowMap)
 app:match('login','/login',respond_to({GET = ShowLogin,POST = DoLogin}))
 app:get('logout', '/logout', function(self)
   self.session.loggedIn = false

@@ -28,6 +28,16 @@ a {
   text-decoration: none;
 }
 
+.burger-score {
+  text-align: right;
+  margin-left: 10px;
+}
+
+.burger-name {
+  float: right;
+  margin-right: 5px;
+}
+
 .center-page {
   height: auto;
   left: 0;
@@ -43,10 +53,11 @@ a {
 
 .table-header {
   text-align: center;
+  font-weight: bold;
 }
 
 .burger-content {
-  padding: 10px;
+
 }
 
 .top {
@@ -72,11 +83,11 @@ a {
 
 .burger-panel {
   float: left;
+  height: 140px;
   width: auto;
   &:hover {
     background-color: $background2;
   }
-  height: 140px;
 }
 
 .burger-stats {
@@ -94,15 +105,19 @@ a {
 .burger-icon {
   float: left;
   height: 100px;
-  width: 100px;
   margin: 20px;
+  width: 100px;
 }
 
 .rankItem {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+  margin-right: 0px;
+  margin-top: 5px;
   display: block;
-  text-align: center;
+  &:hover {
+    background-color: $background1;
+  }
 }
 
 .title-row {
@@ -147,6 +162,12 @@ a {
   height: 160px;
   margin: 10px;
   width: 160px;
+}
+
+.mainmap {
+  width: 780px;
+  height: 400px;
+  padding: 0px;
 }
 
 .map {

@@ -25,13 +25,13 @@
     <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>
 
     <div>
-      Meat Rating:</br>
+      Meat Rating:
       <input type="range" name="meatRating" min="0" max="10" value ='<%= burger.meatRating or 0 %>'>
-      Bun Rating:</br>
+      Bun Rating:
       <input type="range" name="bunRating" min="0" max="10" value ='<%= burger.bunRating or 0 %>'>
-      Topping Rating:</br></br>
+      Topping Rating:
       <input type="range" name="toppingRating" min="0" max="10" value ='<%= burger.toppingRating or 0 %>'>
-      Side Rating:</br></br>
+      Side Rating:
       <input type="range" name="sideRating" min="0" max="10" value ='<%= burger.sideRating or 0 %>'>
     <input id="submitBurger" type="submit" value="Submit">
   <form>
