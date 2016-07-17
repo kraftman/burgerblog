@@ -81,7 +81,8 @@ local function BurgerSubmit(self)
     lat = self.params.lat or 0,
     long = self.params.long or 0,
     burgerID = uuid.generate_random(),
-    dateEaten = dateEaten
+    dateEaten = dateEaten,
+    burgerNotes = self.params.burgerNotes or ''
   }
 
   if self.params.burgerID then

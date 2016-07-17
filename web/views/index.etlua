@@ -1,11 +1,13 @@
 
 <% for i, burger in pairs(burgers) do %>
-  <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
+
     <div class='burger-panel'>
-      <img class='burger-icon' src='/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>'alt="burger image">
-      <a href="<%= url_for('delete',{burgerID = burger.burgerID}) %>">Delete</a><a href="<%= url_for('update',{burgerID = burger.burgerID}) %>">Edit</a>
+      <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
+        <img class='burger-icon' src='/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>'alt="burger image">
+      </a>
+
       <span class='burger-stats'>
-        Name: <%= burger.burgerName  %></br>
+        Name: <%= burger.burgerName:sub(1,10)  %></br>
         Location: <%= burger.restaurantName  %></br>
         Rating: <%= burger.burgerScore  %></br>
         Meat Rating: <%= burger.meatRating  %></br>
@@ -19,5 +21,4 @@
         <%= burger.burgerNotes or 'no notes'  %></br>
       </span>
     </div>
-  </a>
 <% end %>
