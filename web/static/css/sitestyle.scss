@@ -38,6 +38,10 @@ a {
   margin-right: 10px;
 }
 
+.burger-image-main {
+  width: 700px;
+}
+
 .center-page {
   height: auto;
   left: 0;
@@ -100,6 +104,7 @@ a {
 .burger-info {
   display: inline-block;
   margin: 20px;
+  max-width: 200px;
 }
 
 .burger-icon {
