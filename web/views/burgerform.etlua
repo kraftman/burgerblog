@@ -18,11 +18,11 @@
     <label for="burgerName">Burger Name</label></br>
     <input type="text" name="burgerName" value ='<%= burger.burgerName or '' %>'></br>
 
-    <input id='lat' type="hidden" name="lat" >
-    <input id='long' type="hidden" name="long" >
+    <input id='lat' type="hidden" name="lat" value ='<%= burger.lat or '' %>' >
+    <input id='long' type="hidden" name="long" value ='<%= burger.long or '' %>' >
 
     <label for="burgerNotes">Burger Notes</label></br>
-    <textarea name="burgerNotes" style="width:250px;height:150px;"></textarea></br>
+    <textarea name="burgerNotes" style="width:250px;height:150px;"><%= burger.burgerNotes or '' %></textarea></br>
 
     <div>
       Meat Rating:

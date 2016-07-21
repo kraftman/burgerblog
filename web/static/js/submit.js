@@ -13,8 +13,19 @@ if (navigator.geolocation) {
 }
 
 function showPosition(position) {
-   lat = position.coords.latitude
-   long = position.coords.longitude
+  console.log('twst '+$('#lat').val()+' this')
+  if ($('#lat').val() == '') {
+    lat = position.coords.latitude
+    long = position.coords.longitude
+    $('#lat').val(lat)
+    $('#long').val(long)
+  } else {
+    lat = $('#lat').val()
+    long = $('#long').val()
+  }
+
+
+
    console.log('got loc: ',lat, long)
    var newLatLng = new google.maps.LatLng(parseFloat(lat), parseFloat(long))
    map2.panTo(newLatLng)
