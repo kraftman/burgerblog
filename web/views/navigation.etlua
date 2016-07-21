@@ -28,7 +28,7 @@
   <% for i, burger in pairs(recent10) do %>
     <a class='rankItem' href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
     <span class='burger-score'><%= os.date("%d/%m/%y", burger.createdAt)  %></span>
-    <span class='burger-name'><%= burger.burgerName:sub(1,13) %></span>
+    <span class='burger-name'><%= burger.burgerName:sub(1,12) %></span>
     </a>
   <% end %>
 </div>
