@@ -10,7 +10,7 @@
     </br>
 
     <label for="dateEaten">Date</label></br>
-    <input type="date" name="dateEaten"></br>
+    <input type="date" name="dateEaten" value ='<%= os.date("%Y-%m-%d", burger.dateEaten) or '' %>'></br>
 
     <label for="restaurantName">Restaurant Name</label></br>
     <input type="text" name="restaurantName" value ='<%= burger.restaurantName or '' %>'></br>
