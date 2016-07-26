@@ -31,6 +31,10 @@ a {
   text-decoration: none;
 }
 
+.burger-side-score {
+  margin-left: 5px;
+}
+
 .burger-score {
   font-size: 60px;
   position: absolute;
@@ -96,7 +100,7 @@ display: table-cell;
   position: relative;
   float: left;
   height: 140px;
-  width: auto;
+  width: 100%;
   &:hover {
     background-color: $background2;
   }
@@ -105,6 +109,7 @@ display: table-cell;
 .burger-stats {
   float: left;
   vertical-align: middle;
+  min-width: 200px;
   height: 100%;
   margin: 20px;
 }
@@ -112,11 +117,14 @@ display: table-cell;
 .burger-info {
   display: inline-block;
   margin: 20px;
-  max-width: 200px;
 
   @media (max-width: 800px) {
     display: none;
   }
+}
+
+.burger-info-name {
+  font-size: 30px;
 }
 
 .burger-icon {
