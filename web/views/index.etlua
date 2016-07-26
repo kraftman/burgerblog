@@ -5,8 +5,9 @@
 
       <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
         <img class='burger-icon' src='/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>'alt="burger image">
+        <span class='burger-score'><%= burger.burgerScore  %></span>
       </a>
-      <span class='burger-score'><%= burger.burgerScore  %></span>
+
 
       <span class='burger-stats'>
         <a class='burger-info-name' href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
