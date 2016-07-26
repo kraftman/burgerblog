@@ -21,7 +21,7 @@ html, body
 }
 
 body {
-  font-family: "Helvetica", "Arial", sans-serif;
+   font-family: "Helvetica", "Arial", sans-serif;
   margin: 0 ;
   padding: 0;
 }
@@ -32,8 +32,14 @@ a {
 }
 
 .burger-score {
-  text-align: right;
-  margin-left: 10px;
+  font-size: 60px;
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
+  margin: 20px;
+  padding-left: 0px;
+  padding-right: 10px;
+  color: white;
 }
 
 .burger-name {
@@ -87,6 +93,7 @@ display: table-cell;
  }
 
 .burger-panel {
+  position: relative;
   float: left;
   height: 140px;
   width: auto;

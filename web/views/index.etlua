@@ -2,18 +2,19 @@
 <% for i, burger in pairs(burgers) do %>
 
     <div class='burger-panel'>
+
       <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
         <img class='burger-icon' src='/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>'alt="burger image">
       </a>
+      <span class='burger-score'><%= burger.burgerScore  %></span>
 
       <span class='burger-stats'>
         Name: <%= burger.burgerName:sub(1,10)  %></br>
         Location: <%= burger.restaurantName  %></br>
-        Rating: <%= burger.burgerScore  %></br>
-        Meat Rating: <%= burger.meatRating  %></br>
-        Bun Rating: <%= burger.bunRating  %></br>
-        Topping Rating: <%= burger.toppingRating  %></br>
-        Side Rating: <%= burger.sideRating or 0 %></br>
+        Meat <%= burger.meatRating  %></br>
+        Bun <%= burger.bunRating  %></br>
+        Topping <%= burger.toppingRating  %></br>
+        Side <%= burger.sideRating or 0 %></br>
       </span>
       <span class='burger-info'>
         Notes:
