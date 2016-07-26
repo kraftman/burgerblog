@@ -35,6 +35,15 @@ a {
   margin-left: 5px;
 }
 
+.burger-page-details {
+  width: 100%;
+  text-align: center;
+}
+
+.burger-page-name {
+  font-size: 30px;
+}
+
 .burger-score {
   font-size: 60px;
   position: absolute;
@@ -93,7 +102,8 @@ a {
 }
 
 .main {
-display: table-cell;
+  display: table-cell;
+  width: 100%;
  }
 
 .burger-panel {

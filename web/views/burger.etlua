@@ -1,14 +1,16 @@
 
 <img class='burger-image-main' src='/static/uploads/<%= burger["img:filename"] %>'alt="burger image">
 
+<div class='burger-page-details'>
+  <h1 class='burger-page-name'><%= burger.burgerName  %></h1>
 
-Name: <%= burger.burgerName  %></br>
-Location: <%= burger.restaurantName  %></br>
-BurgerRating: <%= burger.burgerScore  %></br>
-Meal Rating: <%= burger.meatScore  %></br>
-Meat Rating: <%= burger.meatRating  %></br>
-Bun Rating: <%= burger.bunRating  %></br>
-Topping Rating: <%= burger.toppingRating  %></br>
+  Location: <%= burger.restaurantName  %></br>
+  BurgerRating: <%= burger.burgerScore  %></br>
+  Meal Rating: <%= burger.meatScore  %></br>
+  Meat Rating: <%= burger.meatRating  %></br>
+  Bun Rating: <%= burger.bunRating  %></br>
+  Topping Rating: <%= burger.toppingRating  %></br>
+</div>
 
 <a href="<%= url_for('delete',{burgerID = burger.burgerID}) %>">Delete</a><a href="<%= url_for('update',{burgerID = burger.burgerID}) %>">Edit</a>
 
