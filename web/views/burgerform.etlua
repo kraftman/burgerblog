@@ -26,13 +26,13 @@
 
     <div>
       Meat Rating:
-      <input type="range" name="meatRating" min="0" max="10" value ='<%= burger.meatRating or 0 %>'>
+      <input type="range" name="meatRating" min="0" max="10" value ='<%= burger.meatRating or 0 %>'></br>
       Bun Rating:
-      <input type="range" name="bunRating" min="0" max="10" value ='<%= burger.bunRating or 0 %>'>
+      <input type="range" name="bunRating" min="0" max="10" value ='<%= burger.bunRating or 0 %>'></br>
       Topping Rating:
-      <input type="range" name="toppingRating" min="0" max="10" value ='<%= burger.toppingRating or 0 %>'>
+      <input type="range" name="toppingRating" min="0" max="10" value ='<%= burger.toppingRating or 0 %>'></br>
       Side Rating:
-      <input type="range" name="sideRating" min="0" max="10" value ='<%= burger.sideRating or 0 %>'>
+      <input type="range" name="sideRating" min="0" max="10" value ='<%= burger.sideRating or 0 %>'></br>
     <input id="submitBurger" type="submit" value="Submit">
   <form>
 </div>
