@@ -14,7 +14,7 @@
           <%= burger.burgerName  %>
         </a>
       </br>
-      <%= os.date('%d/%m/%Y',burger.dateEaten)  %>
+      <%= DaysAgo(os.time() - burger.dateEaten)  %> days ago
       </br>
         Meat <%= burger.meatRating  %>
         Bun <%= burger.bunRating  %></br>

@@ -13,6 +13,8 @@ app:before_filter(function(self)
   self.top10 = api:GetTopBurgers(10)
   self.recent10 = api:GetRecentBurgers(0,9)
 
+  self.DaysAgo = function(_,epochTime) return math.floor(epochTime/60/60/24) end
+
 end)
 
 app:get("index", "/", function(self)
