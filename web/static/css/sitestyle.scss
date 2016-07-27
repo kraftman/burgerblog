@@ -109,7 +109,7 @@ a {
 .burger-panel {
   position: relative;
   float: left;
-  height: 140px;
+  height: auto;
   width: 100%;
   &:hover {
     background-color: $background2;
@@ -117,11 +117,9 @@ a {
 }
 
 .burger-stats {
-  float: left;
+  padding-top: 20px;
   vertical-align: middle;
-  min-width: 200px;
   height: 100%;
-  margin: 20px;
 }
 
 .burger-info {
