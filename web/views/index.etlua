@@ -3,7 +3,7 @@
 
     <div class='burger-panel'>
 
-      <a href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
+      <a class='burger-icon-link' href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
         <img class='burger-icon' src='/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>'alt="burger image">
         <span class='burger-score'><%= burger.burgerScore  %></span>
       </a>

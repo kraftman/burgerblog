@@ -20,6 +20,13 @@ function showPosition(position) {
 }
 
 $(function() {
+
+  $(".burger-icon-link, .burger-info-name").click(function(e) {
+   //do something
+   e.stopPropagation();
+})
+
+
   $(".burger-panel").click(function() {
     console.log('test')
     lat = $(this).find('.burger-lat')[0].value;
