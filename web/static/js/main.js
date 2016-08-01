@@ -58,17 +58,14 @@ function updateMarkers() {
   $.getJSON('/api/nearest/'+lat+'/'+long, function(data){
     console.log(data)
     $.each( data, function( key, burgerInfo ) {
-      var image = {
-          url: '/static/images/burger-fallback.png',
-          size: new google.maps.Size(30, 30),
-        };
-        var pinIcon = new google.maps.MarkerImage(
-              '/static/images/burger-fallback.png',
-              null, /* size is determined at runtime */
-              null, /* origin is 0,0 */
-              null, /* anchor is bottom center of the scaled image */
-              new google.maps.Size(20, 20)
-          );
+
+      var pinIcon = new google.maps.MarkerImage(
+        '/static/images/burger-fallback.png',
+        null, /* size is determined at runtime */
+        null, /* origin is 0,0 */
+        null, /* anchor is bottom center of the scaled image */
+        new google.maps.Size(20, 20)
+      );
       var marker = new google.maps.Marker({map: map, icon: pinIcon})
       //console.log(parseFloat(burgerInfo.lat), parseFloat(burgerInfo.long))
       //console.log(long)
@@ -94,10 +91,5 @@ function initMiniMap() {
   updateMarkers();
   google.maps.event.addListener(map, 'dragend',  updateMarkers );
   google.maps.event.addListener(map, 'zoom_changed',  updateMarkers );
-
-
-
-
-
 
 }
