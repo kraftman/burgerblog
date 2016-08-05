@@ -78,6 +78,14 @@ function api:GetTopBurgers(count)
 
 end
 
+function api:GetWorstBurgers(count)
+  local red = self:GetRedisConnection()
+  local res, err = red:zrange('burgerScores',0,count-1)
+  local ok
+
+  return self:GetBurgerInfo(red, res)
+end
+
 function api:GetRecentBurgers(startAt, endAt)
   local red = self:GetRedisConnection()
   local res, err = red:zrevrange('burgerDates',startAt, endAt)

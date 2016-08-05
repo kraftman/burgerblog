@@ -47,6 +47,14 @@ app:get("top10", "/top10", function(self)
   return {render = 'index'}
 end)
 
+app:get("bottom10", "/bottom10", function(self)
+  --return "Welcome to Lapis " .. require("lapis.version")
+  --load all burgerapi
+  self.burgers = api:GetWorstBurgers(10)
+
+  return {render = 'index'}
+end)
+
 app:get("faq", "/faq", function(self)
   --return "Welcome to Lapis " .. require("lapis.version")
   --load all burgerapi

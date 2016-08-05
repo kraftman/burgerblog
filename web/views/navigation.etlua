@@ -2,6 +2,7 @@
 <div class="top">
     <a class="title-row" href="<%= url_for('index') %>">Home</a>
     <a class="title-row" href="<%= url_for('top10') %>">Top10</a>
+    <a class="title-row" href="<%= url_for('bottom10') %>">Bottom10</a>
     <a class="title-row" href="<%= url_for('map') %>">Map</a>
 
     <% if session.loggedIn then %>
