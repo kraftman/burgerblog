@@ -11,8 +11,10 @@
   Bun Rating: <%= burger.bunRating  %></br>
   Topping Rating: <%= burger.toppingRating  %></br>
 
+  <% if session.loggedIn then %>
+    <a href="<%= url_for('delete',{burgerID = burger.burgerID}) %>">Delete</a><a href="<%= url_for('update',{burgerID = burger.burgerID}) %>">Edit</a>
+  <% end %>
 
-  <a href="<%= url_for('delete',{burgerID = burger.burgerID}) %>">Delete</a><a href="<%= url_for('update',{burgerID = burger.burgerID}) %>">Edit</a>
 
   <div class='burger-notes'>
     Notes: <%= burger.burgerNotes  %></br>

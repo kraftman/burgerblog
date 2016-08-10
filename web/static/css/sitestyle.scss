@@ -93,7 +93,7 @@ a {
 
 .left {
   background-color: $background2;
-  width: 178px;
+  width: 250px;
   display: table-cell;
   vertical-align: top;
   @media (max-width: 800px) {
@@ -103,7 +103,7 @@ a {
 
 .main {
   display: table-cell;
-  width: 100%;
+  width: 75%;
  }
 
 .burger-panel {
@@ -111,15 +111,17 @@ a {
   float: left;
   height: auto;
   width: 100%;
+
   &:hover {
     background-color: $background2;
   }
 }
 
 .burger-stats {
-  padding-top: 20px;
+
   vertical-align: middle;
   height: 100%;
+  text-align: center;
 }
 
 .burger-info {
@@ -144,9 +146,9 @@ a {
 }
 
 .rankItem {
-  margin-left: 0px;
+  margin-left: 5px;
   margin-bottom: 5px;
-  margin-right: 0px;
+  margin-right: 5px;
   margin-top: 5px;
   display: block;
   &:hover {
@@ -193,9 +195,9 @@ a {
 }
 
 .minimap {
-  height: 160px;
+  height: 220px;
   margin: 10px;
-  width: 160px;
+  width: 220px;
 }
 
 .mainmap {

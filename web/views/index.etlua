@@ -12,6 +12,7 @@
       <input class='burger-long' type="hidden" name="long" value="<%= burger.long  %>">
       <span class='burger-stats'>
         <a class='burger-info-name' href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
+        </br>
           <%= burger.burgerName  %>
         </a>
       </br>
