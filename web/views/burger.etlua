@@ -5,8 +5,8 @@
   <h1 class='burger-page-name'><%= burger.burgerName  %></h1>
 
   Location: <%= burger.restaurantName  %></br>
-  BurgerRating: <%= burger.burgerScore  %></br>
-  Meal Rating: <%= burger.meatScore  %></br>
+  BurgerRating: <%= burger.burgerScore  %>/30</br>
+  Meal Rating: <%= burger.mealScore  %>/40</br>
   Meat Rating: <%= burger.meatRating  %></br>
   Bun Rating: <%= burger.bunRating  %></br>
   Topping Rating: <%= burger.toppingRating  %></br>

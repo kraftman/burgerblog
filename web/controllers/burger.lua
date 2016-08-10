@@ -101,9 +101,13 @@ end
 
 local function ViewBurger(self)
 
-  self.burger = api:GetBurger(self.params.burgerID)
+  local burger = api:GetBurger(self.params.burgerID)
+  self.burger = burger
   if not self.burger then
     return { render = "error404", status = 404}
+  end
+  if not self.burger.mealScore then
+    self.burger.mealScore = burger.meatRating + burger.toppingRating + burger.sideRating + burger.bunRating
   end
   return {render = 'burger'}
 end
