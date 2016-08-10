@@ -14,17 +14,23 @@ app:before_filter(function(self)
   self.recent10 = api:GetRecentBurgers(0,9)
 
   self.DaysAgo = function(_,epochTime)
-
+    local value, unit
     if epochTime < 86400 then
-      return 'Today'
+     return 'Today'
     elseif epochTime < 2592000 then
-      return math.floor(epochTime/60/60/24)..' days ago'
+      value, unit = math.floor(epochTime/60/60/24), 'day'
     elseif epochTime < 31536000 then
-      return math.floor(epochTime/60/60/24/30)..' months ago'
+      value, unit = math.floor(epochTime/60/60/24/30), 'month'
     else
-      return math.floor(epochTime/60/60/24/365)..' years ago'
+      value, unit = math.floor(epochTime/60/60/24/365), 'year'
     end
-   end
+
+    if value > 1 then
+      return value..' '..unit..'s ago'
+    else
+      return value..' '..unit..' ago'
+    end
+  end
 
 end)
 
