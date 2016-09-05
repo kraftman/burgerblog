@@ -110,7 +110,7 @@ local function ViewBurger(self)
     self.burger.mealScore = burger.meatRating + burger.toppingRating + burger.sideRating + burger.bunRating
   end
   if self.burger.burgerName then
-    self.page_title = self.burger.burgerName
+    self.page_title = self.burger.burgerName..' '..self.burger.burgerScore..'/30'
   end
   return {render = 'burger'}
 end
