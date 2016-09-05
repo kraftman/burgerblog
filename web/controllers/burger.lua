@@ -109,6 +109,9 @@ local function ViewBurger(self)
   if not self.burger.mealScore then
     self.burger.mealScore = burger.meatRating + burger.toppingRating + burger.sideRating + burger.bunRating
   end
+  if self.burger.burgerName then
+    self.page_title = self.burger.burgerName
+  end
   return {render = 'burger'}
 end
 
