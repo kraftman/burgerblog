@@ -4,6 +4,11 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
+  <% if burger then %>
+    <meta property="og:image" content="/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>"/>
+  <% end %>
+
+
    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
    <meta name="description" content="<%= burger and burger.burgerNotes or 'BURGER BLOG IS BEST' %>">
   <title><%= page_title or "BURGER BURGER BURGER BURGER" %></title>
