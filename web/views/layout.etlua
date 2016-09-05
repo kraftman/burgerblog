@@ -29,6 +29,7 @@
   </script>
 </head>
   <body>
+    
     <div class='center-page'>
       <% render("views.navigation") %>
       <div class="main">
