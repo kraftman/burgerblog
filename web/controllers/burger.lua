@@ -119,6 +119,7 @@ local function BurgerFeed(self)
 
   local burgers = api:GetRecentBurgers(1,10)
   self.burgers = burgers
+  ngx.header['content-type'] = 'application/rss+xml'
 
   return {render = 'rss', layout = false}
 end
