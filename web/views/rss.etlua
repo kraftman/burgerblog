@@ -1,0 +1,16 @@
+
+  <rss version="2.0">
+    <channel>
+      <title>Recent Burgers</title>
+      <link>http://bestburgerblog.com/</link>
+      <description>Top 10 Recent Burgers</description>
+      <% for i, burger in pairs(burgers) do %>
+        <item>
+           <title><%= burger.burgerName  %> <%= burger.burgerScore  %>/30</title>
+           <link><%= ngx.var.scheme..'://'..ngx.var.host..url_for('viewburger',{burgerID = burger.burgerID}) %></link>
+           <description><%= burger.burgerNotes %></description>
+           <guid><%= burger.burgerID %></guid>
+        </item>
+      <% end %>
+    </channel>
+  </rss>
