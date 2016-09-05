@@ -7,11 +7,15 @@
   <% if burger then %>
     <meta property="og:image" content="/static<%= burger["img:iconName"] and "/uploads/"..burger["img:iconName"] or "/images/burger-fallback.png" %>"/>
   <% end %>
+  <% if feed then %>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/burger/feed"/>
+  <% end %>
 
 
    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
    <meta name="description" content="<%= burger and burger.burgerNotes or 'BURGER BLOG IS BEST' %>">
   <title><%= page_title or "BURGER BURGER BURGER BURGER" %></title>
+
   <meta name="title" content="<%= page_title or "BURGER BURGER BURGER BURGER" %>">
   <link rel="stylesheet" type="text/css" href="/static/css/cssreset.css">
   <link rel="stylesheet" type="text/css" href="/static/css/sitestyle.min.css">
@@ -29,7 +33,7 @@
   </script>
 </head>
   <body>
-    
+
     <div class='center-page'>
       <% render("views.navigation") %>
       <div class="main">

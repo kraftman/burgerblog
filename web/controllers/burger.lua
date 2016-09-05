@@ -115,10 +115,18 @@ local function ViewBurger(self)
   return {render = 'burger'}
 end
 
+local function BurgerFeed(self)
+
+  local burgers = api:GetRecentBurgers(1,10)
+  self.burgers = burgers
+
+  return {render = 'rss', layout = false}
+end
+
 function M:Register(app)
   app:match('submit','/submit',respond_to({GET = BurgerForm,POST = BurgerSubmit}))
   app:match('update','/submit/:burgerID',respond_to({GET = BurgerForm,POST = BurgerSubmit}))
-
+  app:get('rss', '/burger/feed', BurgerFeed)
   app:get("viewburger", "/burger/:burgerID", ViewBurger)
 end
 

@@ -42,6 +42,7 @@ app:get("index", "/", function(self)
   else
     self.burgers = self.recent10
   end
+  self.feed = true
   return {render = true}
 end)
 
