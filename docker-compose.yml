@@ -12,6 +12,7 @@ services:
     build: web/.
     ports:
       - "8080:8080"
+      - "8081:8081"
     volumes:
       - ./web:/opt/openresty/nginx/conf
     entrypoint: ""

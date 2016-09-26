@@ -9,6 +9,9 @@ events {
 }
 
 http {
+  proxy_cache_path  /tmp/cache levels=1:2 keys_zone=my-cache:1m max_size=100m;
+  proxy_temp_path /tmp/tmp;
+
   include mime.types;
   resolver '127.0.0.11';
 
@@ -17,6 +20,16 @@ http {
 
   server {
     listen 8080;
+    location / {
+      proxy_pass http://localhost:8081;
+      proxy_cache my-cache;
+      proxy_cache_valid  200 302  5s;
+      proxy_cache_valid  404      1m;
+    }
+  }
+
+  server {
+    listen 8081;
     lua_code_cache off;
 
     location / {
