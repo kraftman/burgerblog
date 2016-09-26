@@ -42,6 +42,7 @@ app:get("index", "/", function(self)
   else
     self.burgers = self.recent10
   end
+  self.feed = true
   return {render = true}
 end)
 
@@ -49,6 +50,7 @@ app:get("top10", "/top10", function(self)
   --return "Welcome to Lapis " .. require("lapis.version")
   --load all burgerapi
   self.burgers = self.top10
+  self.page_title = 'TOP 10 BURGERS'
 
   return {render = 'index'}
 end)
@@ -57,6 +59,7 @@ app:get("bottom10", "/bottom10", function(self)
   --return "Welcome to Lapis " .. require("lapis.version")
   --load all burgerapi
   self.burgers = api:GetWorstBurgers(10)
+  self.page_title = 'WORST BURGERS'
 
   return {render = 'index'}
 end)

@@ -109,13 +109,25 @@ local function ViewBurger(self)
   if not self.burger.mealScore then
     self.burger.mealScore = burger.meatRating + burger.toppingRating + burger.sideRating + burger.bunRating
   end
+  if self.burger.burgerName then
+    self.page_title = self.burger.burgerName..' '..self.burger.burgerScore..'/30'
+  end
   return {render = 'burger'}
+end
+
+local function BurgerFeed(self)
+
+  local burgers = api:GetRecentBurgers(1,10)
+  self.burgers = burgers
+  ngx.header['content-type'] = 'application/rss+xml'
+
+  return {render = 'rss', layout = false}
 end
 
 function M:Register(app)
   app:match('submit','/submit',respond_to({GET = BurgerForm,POST = BurgerSubmit}))
   app:match('update','/submit/:burgerID',respond_to({GET = BurgerForm,POST = BurgerSubmit}))
-
+  app:get('rss', '/burger/feed', BurgerFeed)
   app:get("viewburger", "/burger/:burgerID", ViewBurger)
 end
 
