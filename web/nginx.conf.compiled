@@ -17,6 +17,8 @@ http {
 
   lua_package_path "./controllers/?.lua;;./lib/?.lua;;";
   client_max_body_size 10m;
+  gzip on;
+  gzip_types text/plain application/xml txt/html;
 
   server {
     listen 8080;
