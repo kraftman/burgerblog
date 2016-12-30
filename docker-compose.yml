@@ -10,13 +10,12 @@ services:
       - "6378"
   burgerblog:
     build: web/.
-    ports:
-      - "8080:8080"
-      - "8081:8081"
+    expose:
+      - "80"
     volumes:
       - ./web:/opt/openresty/nginx/conf
     entrypoint: ""
-    command:  bash -c "lapis server"
+    command:  bash -c "lapis server development"
 networks:
   default:
     external:

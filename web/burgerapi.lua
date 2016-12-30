@@ -30,11 +30,11 @@ function api:ConvertListToTable(list)
   return info
 end
 
-function api:GetBurgerInfo(red, burgeIDs)
+function api:GetBurgerInfo(red, burgerIDs)
   local burgers = {}
 
-  if burgeIDs then
-    for k, v in pairs(burgeIDs) do
+  if burgerIDs then
+    for k, v in pairs(burgerIDs) do
       ok, err = red:hgetall('burger:'..v)
       if ok then
         burgers[k] = self:ConvertListToTable(ok)
@@ -48,13 +48,14 @@ end
 function api:GetBurger(burgerID)
   local red = self:GetRedisConnection()
   local res, err = red:hgetall('burger:'..burgerID)
+  red:close()
   if not res then
     ngx.log(ngx.ERR, 'unable to load burger info:',err)
-    red:close()
     return
   end
 
-  return self:ConvertListToTable(res)
+  local burger = self:ConvertListToTable(res)
+  return burger
 end
 
 function api:GetNearestBurgers(lat, long, distance)
@@ -89,20 +90,35 @@ end
 function api:GetRecentBurgers(startAt, endAt)
   local red = self:GetRedisConnection()
   local res, err = red:zrevrange('burgerDates',startAt, endAt)
-  local ok
 
   local burgers = {}
 
-  if res then
-    for k, v in pairs(res) do
-      ok, err = red:hgetall('burger:'..v)
-      if ok then
-        burgers[k] = self:ConvertListToTable(ok)
-      end
-    end
-  end
+  return self:GetBurgerInfo(red, res)
 
-  return burgers
+end
+
+function api:GetBurgerScore(burger)
+
+  return math.floor((burger.meatFlavour + burger.meatTexture + burger.meatSucculence + burger.meatVolume + burger.toppingRating )*2)
+
+end
+
+function api:GetMealScore(burger)
+  return math.floor((burger.meatFlavour + burger.meatTexture + burger.meatSucculence + burger.meatVolume + burger.toppingRating +burger.sideRating)/60*100)
+end
+
+function api:FixBurgers()
+  -- laod them all
+  -- convert score
+  -- save them all
+  local burgers = self:GetRecentBurgers(0, 200)
+  for k,burger in pairs(burgers) do
+    burger.meatFlavour = burger.meatRating
+    burger.meatTexture = burger.meatRating
+    burger.meatSucculence = burger.meatRating
+    burger.meatVolume = burger.meatRating
+    self:CreateBurgerPost(burger)
+  end
 
 end
 
@@ -139,9 +155,10 @@ function api:CreateBurgerPost(burgerInfo)
     ]]
   local red = self:GetRedisConnection()
 
-  burgerInfo.burgerScore = burgerInfo.meatRating + burgerInfo.bunRating + burgerInfo.toppingRating
+  burgerInfo.burgerScore = self:GetBurgerScore(burgerInfo)
 
-  burgerInfo.mealScore = burgerInfo.meatRating + burgerInfo.bunRating + burgerInfo.toppingRating + burgerInfo.sideRating
+  burgerInfo.mealScore = self:GetMealScore(burgerInfo)
+  burgerInfo.meatRating = math.floor((burgerInfo.meatFlavour + burgerInfo.meatTexture + burgerInfo.meatSucculence + burgerInfo.meatVolume )/4+0.5)
 
   burgerInfo.modApproved = 'false'
   local ok, err = red:hmset('burger:'..burgerInfo.burgerID, burgerInfo)

@@ -25,8 +25,14 @@
     <textarea name="burgerNotes" style="width:250px;height:150px;"><%= burger.burgerNotes or '' %></textarea></br>
 
     <div>
-      Meat Rating:
-      <input type="range" name="meatRating" min="0" max="10" value ='<%= burger.meatRating or 0 %>'></br>
+      Meat Flavour:
+      <input type="range" name="meatFlavour" min="0" max="10" value ='<%= burger.meatFlavour or 0 %>'></br>
+      Meat Texture:
+      <input type="range" name="meatTexture" min="0" max="10" value ='<%= burger.meatTexture or 0 %>'></br>
+      Meat Succulence:
+      <input type="range" name="meatSucculence" min="0" max="10" value ='<%= burger.meatSucculence or 0 %>'></br>
+      Meat Volume:
+      <input type="range" name="meatVolume" min="0" max="10" value ='<%= burger.meatVolume or 0 %>'></br>
       Bun Rating:
       <input type="range" name="bunRating" min="0" max="10" value ='<%= burger.bunRating or 0 %>'></br>
       Topping Rating:

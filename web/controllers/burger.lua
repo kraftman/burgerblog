@@ -72,7 +72,10 @@ local function BurgerSubmit(self)
   end
 
   local burgerInfo = {
-    meatRating = self.params.meatRating or 0,
+    meatFlavour = self.params.meatFlavour or 0,
+    meatTexture = self.params.meatTexture or 0,
+    meatSucculence = self.params.meatSucculence or 0,
+    meatVolume = self.params.meatVolume or 0,
     bunRating = self.params.bunRating or 0,
     toppingRating = self.params.toppingRating or 0,
     sideRating = self.params.sideRating or 0,
@@ -106,9 +109,7 @@ local function ViewBurger(self)
   if not self.burger then
     return { render = "error404", status = 404}
   end
-  if not self.burger.mealScore then
-    self.burger.mealScore = burger.meatRating + burger.toppingRating + burger.sideRating + burger.bunRating
-  end
+  
   if self.burger.burgerName then
     self.page_title = self.burger.burgerName..' '..self.burger.burgerScore..'/30'
   end

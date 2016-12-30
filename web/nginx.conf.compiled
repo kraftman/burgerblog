@@ -21,7 +21,7 @@ http {
   gzip_types text/plain application/xml txt/html;
 
   server {
-    listen 8080;
+    listen 80;
     location / {
       proxy_pass http://localhost:8081;
       proxy_cache my-cache;
@@ -42,6 +42,9 @@ http {
     }
 
     location /static/ {
+
+      expires 24h;
+      add_header Cache-Control public;
       alias static/;
     }
 

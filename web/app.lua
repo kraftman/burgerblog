@@ -141,6 +141,22 @@ app:get('logout', '/logout', function(self)
   return {redirect_to = self:url_for("index")}
 end)
 
+local function FixBurgers(self)
+  if not self.session.loggedIn then
+    return 'not logged in'
+  end
+
+  local ok, err = api:FixBurgers()
+  if ok then
+    return 'done'
+  else
+    return 'fail: '..err
+  end
+
+end
+
+app:get('fixburgers','/fixburgers', FixBurgers)
+
 
 require 'burger':Register(app)
 

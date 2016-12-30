@@ -7,7 +7,10 @@
   Location: <%= burger.restaurantName  %></br>
   BurgerRating: <%= burger.burgerScore  %>/30</br>
   Meal Rating: <%= burger.mealScore  %>/40</br>
-  Meat Rating: <%= burger.meatRating  %></br>
+  Patty Flavour: <%= burger.meatFlavour  %></br>
+  Patty Texture: <%= burger.meatTexture  %></br>
+  Patty Succulence: <%= burger.meatSucculence  %></br>
+  Patty Volume: <%= burger.meatVolume  %></br>
   Bun Rating: <%= burger.bunRating  %></br>
   Topping Rating: <%= burger.toppingRating  %></br>
 
