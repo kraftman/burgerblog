@@ -5,8 +5,8 @@
   <h1 class='burger-page-name'><%= burger.burgerName  %></h1>
 
   Location: <%= burger.restaurantName  %></br>
-  BurgerRating: <%= burger.burgerScore  %>/30</br>
-  Meal Rating: <%= burger.mealScore  %>/40</br>
+  Burger Rating: <%= burger.burgerScore  %>/100</br>
+  Meal Rating: <%= burger.mealScore  %>/100</br>
   Patty Flavour: <%= burger.meatFlavour  %></br>
   Patty Texture: <%= burger.meatTexture  %></br>
   Patty Succulence: <%= burger.meatSucculence  %></br>
@@ -20,6 +20,9 @@
 
 
   <div class='burger-notes'>
-    Notes: <%= burger.burgerNotes  %></br>
+    Notes:
+    <div>
+      <%= burger.burgerNotes  %>
+    </div>
   </div>
 </div>
