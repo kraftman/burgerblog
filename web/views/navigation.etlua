@@ -1,15 +1,14 @@
 
 <div class="top">
-    <a class="title-row" href="<%= url_for('index') %>">Home</a>
-    <a class="title-row" href="<%= url_for('top10') %>">Top10</a>
-    <a class="title-row" href="<%= url_for('bottom10') %>">Bottom10</a>
-    <a class="title-row" href="<%= url_for('map') %>">Map</a>
+    <a class="title-row" href="<%= url_for('index') %>">HOME</a>
+    <a class="title-row" href="<%= url_for('top10') %>">BEST</a>
+    <a class="title-row" href="<%= url_for('bottom10') %>">WORST</a>
+    <a class="title-row" href="<%= url_for('all') %>">ALL</a>
 
     <% if session.loggedIn then %>
       <a class="title-row" href="<%= url_for('submit') %>">Submit</a>
       <a class="title-row" href="<%= url_for('logout') %>">Logout</a>
     <% else %>
-      <a class="title-row" href="<%= url_for('login') %>">Login</a>
     <% end %>
 </div>
 <div class="left">

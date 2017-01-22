@@ -1,4 +1,6 @@
 
+
+
 <% for i, burger in pairs(burgers) do %>
 
     <div class='burger-panel'>
@@ -14,7 +16,7 @@
         <a class='burger-info-name' href="<%= url_for('viewburger',{burgerID = burger.burgerID}) %>">
         </br>
           <%= burger.burgerName  %>
-        </a>
+
       </br>
       <%= DaysAgo(os.time() - burger.dateEaten)  %>
       </br>
@@ -25,4 +27,12 @@
       </span>
 
     </div>
+<% end %>
+
+
+<% if params.page and params.page+0 > 1 then %>
+  <a class='back-forward' href="<%= url_for('index') %>?page=<%= params.page-1  %>">Back</a>
+  <a class='back-forward' href="<%= url_for('index') %>?page=<%= params.page+1  %>">Next</a>
+<% else %>
+  <a class='back-forward' href="<%= url_for('index') %>?page=2">Next</a>
 <% end %>

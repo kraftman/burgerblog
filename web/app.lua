@@ -6,39 +6,42 @@ app.layout = require "views.layout"
 local respond_to = (require 'lapis.application').respond_to
 
 
+local function DaysAgo(_,epochTime)
+  local value, unit
+  if epochTime < 86400 then
+   return 'Today'
+  elseif epochTime < 2592000 then
+    value, unit = math.floor(epochTime/60/60/24), 'day'
+  elseif epochTime < 31536000 then
+    value, unit = math.floor(epochTime/60/60/24/30), 'month'
+  else
+    value, unit = math.floor(epochTime/60/60/24/365), 'year'
+  end
 
+  if value > 1 then
+    return value..' '..unit..'s ago'
+  else
+    return value..' '..unit..' ago'
+  end
+end
 
 app:before_filter(function(self)
   --always load these as they are in the sidebar
   self.top10 = api:GetTopBurgers(10)
   self.recent10 = api:GetRecentBurgers(0,9)
 
-  self.DaysAgo = function(_,epochTime)
-    local value, unit
-    if epochTime < 86400 then
-     return 'Today'
-    elseif epochTime < 2592000 then
-      value, unit = math.floor(epochTime/60/60/24), 'day'
-    elseif epochTime < 31536000 then
-      value, unit = math.floor(epochTime/60/60/24/30), 'month'
-    else
-      value, unit = math.floor(epochTime/60/60/24/365), 'year'
-    end
-
-    if value > 1 then
-      return value..' '..unit..'s ago'
-    else
-      return value..' '..unit..' ago'
-    end
-  end
+  -- util functions for etlua
+  self.DaysAgo = DaysAgo
 
 end)
 
 app:get("index", "/", function(self)
-  --return "Welcome to Lapis " .. require("lapis.version")
+
   --load all burgerapi
   if self.params.page then
-    self.burgers = api:GetRecentBurgers(self.params.page*10, self.params.page*10+9)
+    local page = self.params.page - 1
+
+    self.burgers = api:GetRecentBurgers(page*10, page*10+9)
   else
     self.burgers = self.recent10
   end
@@ -46,11 +49,13 @@ app:get("index", "/", function(self)
   return {render = true}
 end)
 
+app:get("all", '/all', function(self) end)
+
 app:get("top10", "/top10", function(self)
   --return "Welcome to Lapis " .. require("lapis.version")
   --load all burgerapi
   self.burgers = self.top10
-  self.page_title = 'TOP 10 BURGERS'
+  self.page_title = 'BEST BURGERS'
 
   return {render = 'index'}
 end)

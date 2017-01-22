@@ -70,19 +70,25 @@ function api:GetNearestBurgers(lat, long, distance)
   return self:GetBurgerInfo(red, res)
 end
 
-function api:GetTopBurgers(count)
+function api:GetTopBurgers(startAt, endAt)
+  if not endAt then
+    endAt = startAt + 10
+  end
   local red = self:GetRedisConnection()
-  local res, err = red:zrevrange('burgerScores',0, count-1)
-  local ok
+  local res, err = red:zrevrange('burgerScores',startAt, endAt)
 
   return self:GetBurgerInfo(red, res)
 
 end
 
-function api:GetWorstBurgers(count)
+function api:GetWorstBurgers(startAt, endAt)
+
+  if not endAt then
+    endAt = startAt + 10
+  end
+  
   local red = self:GetRedisConnection()
-  local res, err = red:zrange('burgerScores',0,count-1)
-  local ok
+  local res, err = red:zrange('burgerScores',startAt-1,endAt-1)
 
   return self:GetBurgerInfo(red, res)
 end
