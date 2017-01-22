@@ -29,6 +29,7 @@ app:before_filter(function(self)
   --always load these as they are in the sidebar
   self.top10 = api:GetTopBurgers(10)
   self.recent10 = api:GetRecentBurgers(0,9)
+  self.params.page = self.params.page and self.params.page or 1
 
   -- util functions for etlua
   self.DaysAgo = DaysAgo
@@ -38,13 +39,9 @@ end)
 app:get("index", "/", function(self)
 
   --load all burgerapi
-  if self.params.page then
-    local page = self.params.page - 1
+  local page = self.params.page - 1
+  self.burgers = api:GetRecentBurgers(page*10, page*10+9)
 
-    self.burgers = api:GetRecentBurgers(page*10, page*10+9)
-  else
-    self.burgers = self.recent10
-  end
   self.feed = true
   return {render = true}
 end)
@@ -52,26 +49,25 @@ end)
 app:get("all", '/all', function(self) end)
 
 app:get("top10", "/top10", function(self)
-  --return "Welcome to Lapis " .. require("lapis.version")
-  --load all burgerapi
-  self.burgers = self.top10
+
+  local page = self.params.page - 1
+  self.burgers = api:GetBestBurgers(page*10, page*10+9)
   self.page_title = 'BEST BURGERS'
 
   return {render = 'index'}
 end)
 
 app:get("bottom10", "/bottom10", function(self)
-  --return "Welcome to Lapis " .. require("lapis.version")
-  --load all burgerapi
-  self.burgers = api:GetWorstBurgers(10)
+
+  local page = self.params.page - 1
+  self.burgers = api:GetWorstBurgers(page*10, page*10+9)
+
   self.page_title = 'WORST BURGERS'
 
   return {render = 'index'}
 end)
 
 app:get("faq", "/faq", function(self)
-  --return "Welcome to Lapis " .. require("lapis.version")
-  --load all burgerapi
   return 'faq'
 end)
 
@@ -122,7 +118,8 @@ local function DoLogin(self)
     return 'bad username'
   end
 
-  local hash = '4c86dc39dc6c2d9012e62213c6cb5aa5'
+  local hash = os.getenv("PASSWORD_HASH");
+  ngx.log(ngx.ERR, 'hash:, ', hash)
   local digest = ngx.md5(salt..self.params.password)
 
   if digest == hash then

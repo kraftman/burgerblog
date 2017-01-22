@@ -4,6 +4,9 @@ error_log stderr notice;
 daemon off;
 pid logs/nginx.pid;
 
+
+env PASSWORD_HASH;
+
 events {
   worker_connections 1024;
 }
