@@ -1,3 +1,19 @@
+
+var MapHandler = function(map,markers) {
+  this.lat = 51.6660128
+  this.long = -0.4790519999999999
+  this.map = map
+  this.markers = markers
+}
+
+MapHandler.prototype = function() {
+
+  return {
+
+  };
+}();
+
+
 var lat = 51.6660128
 var long = -0.4790519999999999
 var map
