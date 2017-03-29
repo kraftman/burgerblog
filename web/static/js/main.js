@@ -35,11 +35,11 @@ MapHandler.prototype = function() {
     });
   },
   initMiniMap = function() {
-    var myLatlng = {lat: this.lat, lng: this.long};
+
     var mapDiv = document.getElementById('minimap');
     this.map = new google.maps.Map(mapDiv, {
       center: {lat: this.lat, lng: this.long},
-      zoom: 8
+      zoom: 10
     });
     this.map.setZoom(10);
 
