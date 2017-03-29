@@ -11,11 +11,8 @@ MapHandler.prototype = function() {
   var showPosition = function(position){
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
-    console.log(this.map);
-    console.log(this);
 
-    this.map.panTo(new google.maps.LatLng(parseFloat(lat), parseFloat(long)));
-    this.map.setZoom(10);
+    moveTo.call(this, lat, long);
   },
   updateMarkers = function() {
     $.getJSON('/api/nearest/'+this.lat+'/'+this.long, function(data){
@@ -44,6 +41,7 @@ MapHandler.prototype = function() {
       center: {lat: this.lat, lng: this.long},
       zoom: 8
     });
+    this.map.setZoom(10);
 
     updateMarkers();
     google.maps.event.addListener(this.map, 'dragend',  updateMarkers );
@@ -66,7 +64,6 @@ MapHandler.prototype = function() {
       myLatLong = new google.maps.LatLng(parseFloat(lat), parseFloat(long));
     }
 
-
     this.map.panTo(myLatLong);
     updateMarkers();
 
@@ -81,42 +78,46 @@ MapHandler.prototype = function() {
 }();
 
 
-function InitMap(){
-  myMapHandler.addMap();
-  myMapHandler.checkMap();
-}
-
 
 var myMapHandler = new MapHandler();
+
+var burgerUtils = {
+  preventDefaultBurgerAction: function(){
+    $(".burger-icon-link, .burger-info-name").click(function(e) {
+      e.stopPropagation();
+    });
+  },
+  addBurgerMapHandler: function(){
+    $(".burger-panel").click(function() {
+
+      lat = $(this).find('.burger-lat')[0].value;
+      long = $(this).find('.burger-long')[0].value;
+
+      myMapHandler.moveTo(lat, long);
+
+      return false;
+    });
+  }
+};
 
 
 $(function() {
   myMapHandler.load();
 
-  $(".burger-icon-link, .burger-info-name").click(function(e) {
-    e.stopPropagation();
-  });
+  burgerUtils.preventDefaultBurgerAction();
+  burgerUtils.addBurgerMapHandler();
 
-  $(".burger-panel").click(function() {
+});
 
-    lat = $(this).find('.burger-lat')[0].value;
-    long = $(this).find('.burger-long')[0].value;
-
-    myMapHandler.moveTo(lat, long);
-
-    return false;
-  });
-
-  //  Check Radio-box
-  $(".rating input:radio").attr("checked", false);
-  $('.rating input').click(function () {
-    $(".rating span").removeClass('checked');
-    $(this).parent().addClass('checked');
-  });
-
-  $('input:radio').change(
-  function(){
-    var userRating = this.value;
-    //alert(userRating);
-  });
-})
+// //  Check Radio-box
+// $(".rating input:radio").attr("checked", false);
+// $('.rating input').click(function () {
+//   $(".rating span").removeClass('checked');
+//   $(this).parent().addClass('checked');
+// });
+//
+// $('input:radio').change(
+// function(){
+//   var userRating = this.value;
+//   //alert(userRating);
+// });
