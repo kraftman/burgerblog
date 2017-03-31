@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="/static/css/cssreset.css">
   <link rel="stylesheet" type="text/css" href="/static/css/sitestyle.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" defer></script>
+  <script src="/static/js/maphandler.js" defer></script>
   <script src="/static/js/main.js" defer></script>
   <script src="https://maps.googleapis.com/maps/api/js?callback=myMapHandler.initMiniMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
 
