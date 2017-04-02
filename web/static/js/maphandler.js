@@ -1,8 +1,10 @@
 
-var MapHandler = function(map,markers) {
+var $ = require('jquery');
+
+var MapHandler = function() {
   this.lat = 51.6660128;
   this.long = -0.4790519999999999;
-  this.markers = markers;
+  this.markers = {};
   this.map = undefined;
 };
 
@@ -15,22 +17,28 @@ MapHandler.prototype = function() {
     moveTo.call(this, lat, long);
   },
   updateMarkers = function() {
+
+    var context = this;
+
     $.getJSON('/api/nearest/'+this.lat+'/'+this.long, function(data){
       $.each( data, function( key, burgerInfo ) {
+        if (!(burgerInfo.burgerID in context.markers)) {
+          console.log('actually crating burger marker');
+          var pinIcon = new google.maps.MarkerImage(
+            '/static/images/burger-fallback.png',
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new google.maps.Size(20, 20)
+          );
+          var newLatLng = new google.maps.LatLng(parseFloat(burgerInfo.lat), parseFloat(burgerInfo.long));
+          var marker = new google.maps.Marker({position: newLatLng, icon: pinIcon});
+          marker.setMap(context.map);
+          context.markers[burgerInfo.burgerID] = marker;
+          console.log(context.markers);
 
-        var pinIcon = new google.maps.MarkerImage(
-          '/static/images/burger-fallback.png',
-          null, /* size is determined at runtime */
-          null, /* origin is 0,0 */
-          null, /* anchor is bottom center of the scaled image */
-          new google.maps.Size(20, 20)
-        );
-        var marker = new google.maps.Marker({map: this.map, icon: pinIcon});
-        var newLatLng = new google.maps.LatLng(parseFloat(burgerInfo.lat), parseFloat(burgerInfo.long));
-        //console.log(newLatLng)
-
-        marker.setPosition(newLatLng);
-        //marker.setLabel(burgerInfo.burgerName)
+        // marker.setLabel(burgerInfo.burgerName)
+        }
       });
     });
   },
@@ -42,9 +50,10 @@ MapHandler.prototype = function() {
       zoom: 10
     });
 
-    updateMarkers();
-    google.maps.event.addListener(this.map, 'dragend',  updateMarkers );
-    google.maps.event.addListener(this.map, 'zoom_changed',  updateMarkers );
+    updateMarkers.call(this);
+    var context = this;
+    google.maps.event.addListener(this.map, 'dragend',  function() {updateMarkers.call(context);} );
+    google.maps.event.addListener(this.map, 'zoom_changed',  function() {updateMarkers.call(context);} );
   },
   load = function() {
     if (navigator.geolocation) {
@@ -59,12 +68,17 @@ MapHandler.prototype = function() {
     var myLatLong;
     if (long === 'undefined') {
       myLatLong = lat;
+      this.lat = myLatLong.lat();
+      this.long = myLatLong.lng();
     } else {
       myLatLong = new google.maps.LatLng(parseFloat(lat), parseFloat(long));
+      this.lat = lat;
+      this.long = long;
     }
 
+
     this.map.panTo(myLatLong);
-    updateMarkers();
+    updateMarkers.call(this);
 
   };
 
@@ -75,3 +89,5 @@ MapHandler.prototype = function() {
     moveTo: moveTo
   };
 }();
+
+module.exports = MapHandler;

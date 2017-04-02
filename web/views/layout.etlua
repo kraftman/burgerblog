@@ -19,19 +19,6 @@
   <meta name="title" content="<%= page_title or "BURGER BURGER BURGER BURGER" %>">
   <link rel="stylesheet" type="text/css" href="/static/css/cssreset.css">
   <link rel="stylesheet" type="text/css" href="/static/css/sitestyle.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" defer></script>
-  <script src="/static/js/maphandler.js" defer></script>
-  <script src="/static/js/main.js" defer></script>
-  <script src="https://maps.googleapis.com/maps/api/js?callback=myMapHandler.initMiniMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" defer></script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js" ></script>
-  <script >
-    WebFont.load({
-      google: {
-        families: ['PT Sans']
-      }
-    });
-  </script>
 </head>
   <body>
 
@@ -42,6 +29,21 @@
       </div>
     </div>
   </body>
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" ></script> -->
+
+  <script src="/static/js/bundle.js" ></script>
+  <script >console.log('map exists: ',burgerUtils.loadMap != 'undefined')</script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=burgerUtils.loadMap&key=AIzaSyDkkhOCPYpZpieVgXeHc3ZHSrBLIQy1SAQ" ></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js" ></script>
+  <script >
+    WebFont.load({
+      google: {
+        families: ['PT Sans']
+      }
+    });
+  </script>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

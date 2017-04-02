@@ -1,13 +1,18 @@
 
+var $ = require('jquery');
 
+var MapHandler = require('./maphandler');
 var myMapHandler = new MapHandler();
+console.log('loaded main js');
 
-
-var burgerUtils = {
+window.burgerUtils = {
   preventDefaultBurgerAction: function(){
     $(".burger-icon-link, .burger-info-name").click(function(e) {
       e.stopPropagation();
     });
+  },
+  loadMap: function(){
+    myMapHandler.initMiniMap();
   },
   addBurgerMapHandler: function(){
     $(".burger-panel").click(function() {
