@@ -51,7 +51,7 @@ app:get("all", '/all', function(self) end)
 app:get("top10", "/top10", function(self)
 
   local page = self.params.page - 1
-  self.burgers = api:GetBestBurgers(page*10, page*10+9)
+  self.burgers = api:GetTopBurgers(page*10, page*10+9)
   self.page_title = 'BEST BURGERS'
 
   return {render = 'index'}

@@ -18,7 +18,7 @@
 
   <meta name="title" content="<%= page_title or "BURGER BURGER BURGER BURGER" %>">
   <link rel="stylesheet" type="text/css" href="/static/css/cssreset.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/sitestyle.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/sitestyle.css">
 </head>
   <body>
 
