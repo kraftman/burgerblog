@@ -1,0 +1,19 @@
+extends _bootstrap
+block body
+  .navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        a.navbar-brand(href="#") test
+      #collapse1.collapse.navbar-collapse
+        form
+          ul.nav.navbar-nav
+            li.active: a(href='/test') test1
+          ul.nav.navbar-nav.navbar-right.navbar-form
+            .input-group()
+              +input-simple("text","txtName",{placeholder: 'email'})
+            .input-group()
+              +input-simple("password","txtName2",{placeholder: 'password'})
+  +accordion("sample")
+    each val in [1, 2, 3, 4, 5]
+      +accordion-item-default("Title1"+val,"sample")
+        |  #{val} This is first accordion content

@@ -8,12 +8,20 @@ services:
       - ./redis:/data
     expose:
       - "6378"
-  burgerblog:
-    build: web/.
+  node:
+    build: node/.
+    expose:
+      - "81"
+    volumes:
+     - ./node:/usr/src/app
+    command: ['nodemon', 'server.js']
+  api:
+    build: api/.
     expose:
       - "80"
     volumes:
-      - ./web:/opt/openresty/nginx/conf
+      - ./api:/opt/openresty/nginx/conf
+      - ./web:/web
     entrypoint: ""
     command:  bash -c "lapis server development"
 networks:

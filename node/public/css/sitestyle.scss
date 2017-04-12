@@ -1,0 +1,219 @@
+
+$dev-highlight: #000;
+
+div {
+  //border: 1px solid $dev-highlight;
+}
+
+$star-color: 9733;
+$other-color: #f70;
+$other-color2: #ddd;
+
+$background1: #fff;
+$background2: #ffd7b5;
+$highlight:	#ffb38a;
+$highlight2:  #ff9248;
+$accent:  #ff6700;
+$white: #000;
+
+
+html, body
+{
+}
+
+body {
+   font-family: "Helvetica", "Arial", sans-serif;
+  margin: 0 ;
+  padding: 0;
+}
+
+a {
+  color: $white;
+  text-decoration: none;
+}
+
+.burger-side-score {
+  margin-left: 5px;
+}
+
+.burger-page-details {
+  width: 100%;
+  text-align: center;
+}
+
+
+.burger-page-name {
+  font-size: 30px;
+}
+
+.burger-score {
+  font-size: 60px;
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
+  margin: 20px;
+  padding-left: 0px;
+  padding-right: 10px;
+  color: white;
+
+}
+
+.burger-name {
+  float: right;
+  margin-right: 10px;
+}
+
+.burger-image-main {
+  width: 100%;
+}
+
+.center-page {
+  height: 10;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2px;
+  right: 0;
+  width: 960px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+}
+
+.table-header {
+  text-align: center;
+  font-weight: bold;
+}
+
+.burger-content {
+
+}
+
+.top {
+  background-color: $highlight2;
+  height: 40px;
+}
+
+.left {
+  background-color: $background2;
+  width: 250px;
+  display: table-cell;
+  vertical-align: top;
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.main {
+  display: table-cell;
+  width: 75%;
+ }
+
+.burger-panel {
+  position: relative;
+  float: left;
+  height: auto;
+  width: 100%;
+
+  &:hover {
+    background-color: $background2;
+  }
+}
+
+.burger-stats {
+
+  vertical-align: middle;
+  height: 100%;
+  text-align: center;
+}
+
+.burger-info {
+  display: inline-block;
+  margin: 20px;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.burger-info-name {
+  font-size: 30px;
+}
+
+.burger-icon {
+  float: left;
+  height: 100px;
+  margin: 20px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.rankItem {
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  display: block;
+  &:hover {
+    background-color: $background1;
+  }
+}
+
+.title-row {
+  color: $white;
+  font-size: 120%;
+  line-height: 40px;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.rating {
+  float: left;
+
+  :not(:checked) > input {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    top: -9999px;
+  }
+
+  :checked > input ~ label {
+    color: $other-color;
+  }
+
+  :not(:checked) > label {
+    color: $other-color2;
+    cursor: pointer;
+    float: right;
+    font-size: 200%;
+    line-height: 1.2;
+    overflow: hidden;
+    padding: 0 .1em;
+    white-space: nowrap;
+    width: 1em;
+
+    :before {
+      content: $star-color;
+    }
+  }
+}
+
+.minimap {
+  height: 220px;
+  margin: 10px;
+  width: 220px;
+}
+
+.mainmap {
+  width: 780px;
+  height: 400px;
+  padding: 0px;
+}
+
+.map {
+  height: 400px;
+  width: 500px;
+  @media (max-width: 800px) {
+    height: 100px;
+    width: 100px;
+  }
+}
