@@ -11,9 +11,9 @@ var Nav = require('react-bootstrap/lib/Nav')
 var DropdownButton = require('react-bootstrap/lib/DropdownButton')
 var MenuItem = require('react-bootstrap/lib/MenuItem')
 var NavDropdown = require('react-bootstrap/lib/NavDropdown')
+var NavItem = require('react-bootstrap/lib/NavItem')
 
-module.exports = React.createClass({
-  render: function() {
+module.exports = function Test(){
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
@@ -38,5 +38,4 @@ module.exports = React.createClass({
         </Navbar.Collapse>
       </Navbar>
     )
-  }
-});
+};
