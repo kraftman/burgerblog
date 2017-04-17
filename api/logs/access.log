@@ -38,3 +38,5 @@
 172.18.0.1 - - [12/Apr/2017:21:15:04 +0000] "GET /static/html/index.html HTTP/1.1" 404 205 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36"
 172.18.0.1 - - [12/Apr/2017:21:15:04 +0000] "GET /static/html/index.html HTTP/1.1" 404 205 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36"
 172.18.0.1 - - [12/Apr/2017:21:15:04 +0000] "GET /favicon.ico HTTP/1.1" 404 205 "http://localhost/static/html/index.html" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36"
+172.18.0.1 - - [17/Apr/2017:21:06:02 +0000] "GET /client HTTP/1.1" 500 1465 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"
+172.18.0.1 - - [17/Apr/2017:21:34:23 +0000] "GET /client HTTP/1.1" 500 1465 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"

@@ -16,3 +16,5 @@
 2017/04/13 09:39:53 [alert] 18#0: lua_code_cache is off; this will hurt performance in /opt/openresty/nginx/conf/nginx.conf.compiled:38
 2017/04/13 10:34:04 [alert] 18#0: lua_code_cache is off; this will hurt performance in /opt/openresty/nginx/conf/nginx.conf.compiled:38
 2017/04/13 10:35:46 [alert] 18#0: lua_code_cache is off; this will hurt performance in /opt/openresty/nginx/conf/nginx.conf.compiled:38
+2017/04/17 20:58:46 [alert] 22#0: lua_code_cache is off; this will hurt performance in /opt/openresty/nginx/conf/nginx.conf.compiled:38
+2017/04/17 21:28:41 [alert] 21#0: lua_code_cache is off; this will hurt performance in /opt/openresty/nginx/conf/nginx.conf.compiled:38

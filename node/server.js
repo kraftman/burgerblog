@@ -17,19 +17,23 @@ var newApp = React.createElement(require('./public/jsx/mynavbar'))
 //   plugins: ["transform-react-jsx"]
 // });
 
-app.use(express.static('/web'))
+app.use(express.static('public'))
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 app.get('/client', function(req, res){
-  res.sendFile('/web/html/index.html')
+  res.sendFile(__dirname+'/public/html/index.html')
 })
 app.get('/server', function(req, res){
   var test = `  <!DOCTYPE html>
     <html>
       <head>
         <title>burgerblog</title>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" defer></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js" defer ></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.8/react-bootstrap.js" defer ></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
       </head>
       <body>
@@ -38,7 +42,7 @@ app.get('/server', function(req, res){
   test += `</div>
 </body>
 
-<script src="/assets/bundle.js"></script>
+<script src="/build/helloworld.js" defer></script>
 </html>
 `
   res.send(test);
