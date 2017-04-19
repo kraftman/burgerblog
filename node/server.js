@@ -25,14 +25,15 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 app.get('/client', function(req, res){
-  res.sendFile(__dirname+'/public/html/index.html')
+  res.sendFile(__dirname + '/public/html/index.html')
 });
 
 app.get('/server2',function(req, res){
   var title = 'BEST BURGER BLOG!'
-  var context = JSON.parse({test: 'test'})
-    var html = ReactDOMServer.renderToStaticMarkup(testTemplate({body: 'this', title: title, context: context}));
-    res.end(html);
+  var context = {test: 'test'}
+
+  var html = ReactDOMServer.renderToStaticMarkup(testTemplate({body: 'this', title: title, context: context}));
+  res.end(html);
 })
 
 app.get('/server', function(req, res){
