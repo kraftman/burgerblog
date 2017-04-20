@@ -30,14 +30,18 @@ app.get('/client', function(req, res){
 
 app.get('/server2',function(req, res){
   var title = 'BEST BURGER BLOG!'
-  var context = {test: 'test'}
+  var context = []
+  context.push({title: 'burger1',score: '50'})
+  context.push({title: 'burger2',score: '60'})
 
   var html = ReactDOMServer.renderToStaticMarkup(testTemplate({body: 'this', title: title, context: context}));
   res.end(html);
 })
 
 app.get('/server', function(req, res){
-  var context = {test : 'test'};
+  var context = [];
+  context.push({title: 'burger1',score: '50'})
+  context.push({title: 'burger2',score: '60'})
   var test = `  <!DOCTYPE html>
     <html>
       <head>
