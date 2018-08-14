@@ -13,7 +13,11 @@ app.prepare()
     const actualPage = '/post'
     const queryParams = { id: req.params.id }
     app.render(req, res, actualPage, queryParams)
-})
+  })
+
+  server.get('/icon/:id', (req, res) => {
+    
+  })
 
   server.get('*', (req, res) => {
     return handle(req, res)

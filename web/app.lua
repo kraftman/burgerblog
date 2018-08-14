@@ -94,10 +94,22 @@ app:get('nearest','/api/nearest/:lat/:long',function(self)
   local long = self.params.long or 0
   local distance = self.params.distance or 10
   local nearestBurgers = api:GetNearestBurgers(lat, long, distance)
-
-
   return {json = nearestBurgers}
 
+end)
+
+app:get('top', '/api/top/:count', function(self)
+  local offset = 0
+  local count = self.params.count or 10
+  local topBurgers = api:GetTopBurgers(offset, offset+count)
+  return {json = topBurgers}
+end)
+
+app:get('recent', '/api/recent/:count', function(self)
+  local offset = 0
+  local count = self.params.count or 10
+  local topBurgers = api:GetRecentBurgers(offset, offset+count)
+  return {json = topBurgers}
 end)
 
 local function ShowLogin(self)

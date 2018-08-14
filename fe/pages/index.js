@@ -1,68 +1,33 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
+import fetch from 'isomorphic-unfetch'
 
-function getPosts () {
-  return [
-    { id: 'hello-nextjs', title: 'Hello Next.js'},
-    { id: 'learn-nextjs', title: 'Learn Next.js is awesome'},
-    { id: 'deploy-nextjs', title: 'Deploy apps with ZEIT'},
-  ]
-}
-
-const PostLink = ({ post }) => (
-  <li>
-    <Link as={`/p/${post.id}`} href={`/post?title=${post.title}`}>
-      <a>{post.title}</a>
-    </Link>
-    <style jsx>{`
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
-
-      a {
-        text-decoration: none;
-        color: blue;
-        font-family: "Arial";
-      }
-
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
-  </li>
-)
-
-export default () => (
-  <Layout>
-    <h1>My Blog</h1>
+const Index = (props) => (
+  <Layout {...props} >
+    <h1>Recent</h1>
     <ul>
-      {getPosts().map((post) => (
-        <PostLink key={post.id} post={post}/>
+      {props.recentBurgers.map((burger) => (
+          <li key={burger.burgerID}>
+          <Link as={`/p/${burger.burgerID}`} href={`/post?id=${burger.burgerID}`}>
+              <a>{burger.burgerName}</a>
+          </Link>
+          </li>
       ))}
     </ul>
-    <style jsx>{`
-      h1, a {
-        font-family: "Arial";
-      }
-
-      ul {
-        padding: 0;
-      }
-
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
-
-      a {
-        text-decoration: none;
-        color: blue;
-      }
-
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
   </Layout>
 )
+
+Index.getInitialProps = async function() {
+    let topBurgers = await fetch('http://burgerblog/api/top/10')
+    topBurgers = await topBurgers.json()
+
+    let recentBurgers = await fetch('http://burgerblog/api/recent/10')
+    recentBurgers = await recentBurgers.json()
+
+    return {
+      topBurgers,
+      recentBurgers
+    }
+  }
+
+export default Index
