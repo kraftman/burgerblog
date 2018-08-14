@@ -16,6 +16,13 @@ services:
       - ./web:/opt/openresty/nginx/conf
     entrypoint: ""
     command:  bash -c "lapis server development"
+  fe:
+    build: fe/.
+    expose: 
+     - "81"
+    volumes:
+      - ./fe:/src/
+      - /src/node_modules
 networks:
   default:
     external:
