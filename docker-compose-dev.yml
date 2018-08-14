@@ -5,3 +5,6 @@ services:
     ports:
       - "80:8081"
     env_file: 'dev.env'
+  fe:
+    ports:
+      - "81:3000"

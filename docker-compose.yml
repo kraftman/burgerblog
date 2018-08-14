@@ -19,7 +19,7 @@ services:
   fe:
     build: fe/.
     expose: 
-     - "81"
+     - "3000"
     volumes:
       - ./fe:/src/
       - /src/node_modules
