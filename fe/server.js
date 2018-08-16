@@ -1,5 +1,6 @@
-const express = require('express')
-const next = require('next')
+const express = require('express');
+const next = require('next');
+const apiRouter = require('./routes/api');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -16,16 +17,16 @@ app.prepare()
   })
 
   server.get('/icon/:id', (req, res) => {
-    
+
   })
 
   server.get('*', (req, res) => {
     return handle(req, res)
   })
 
-  server.listen(3000, (err) => {
+  server.listen(80, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log('> Ready on http://localhost:80')
   })
 })
 .catch((ex) => {
