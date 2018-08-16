@@ -1,18 +1,26 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
+const burgerDal = require('../dal/burgerdal');
+const { checkSchema } = require('express-validator/check');
 
-// middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
-// define the home page route
-router.get('/', function (req, res) {
-  res.send('Birds home page')
-})
-// define the about route
-router.get('/about', function (req, res) {
-  res.send('About birds')
-})
+const validator = () => {
+  return {
+    count: {
+      in: ['params'],
+      isInt: true,
+    },
+  };
+};
 
-module.exports = router
+router.get('/top/:count', checkSchema(validator), async function(req, res) {
+  const count = req.params.count || 10;
+  const topBurgers = await burgerDal.getTopBurgers(count);
+  return res.json(topBurgers);
+});
+router.get('/bottom/:count', checkSchema(validator), async function(req, res) {
+  const count = req.params.count || 10;
+  const topBurgers = await burgerDal.getWorstBurgers(count);
+  return res.json(topBurgers);
+});
+
+module.exports = router;

@@ -1,33 +1,61 @@
-import Layout from '../components/MyLayout.js'
-import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import Layout from '../components/MyLayout.js';
+import Link from 'next/link';
+import fetch from 'isomorphic-unfetch';
 
 const Index = (props) => (
-  <Layout {...props} >
+  <Layout {...props}>
     <h1>Recent</h1>
     <ul>
-      {props.recentBurgers.map((burger) => (
-          <li key={burger.burgerID}>
-          <Link as={`/p/${burger.burgerID}`} href={`/post?id=${burger.burgerID}`}>
-              <a>{burger.burgerName}</a>
+      {props.mainBurgers.map((burger) => (
+        <li key={burger.burgerID}>
+          <Link
+            as={`/b/${burger.burgerID}`}
+            href={`/post?id=${burger.burgerID}`}
+          >
+            <a>{burger.burgerName}</a>
           </Link>
-          </li>
+        </li>
       ))}
     </ul>
   </Layout>
-)
+);
 
-Index.getInitialProps = async function() {
-    let topBurgers = await fetch('http://burgerblog/api/top/10')
-    topBurgers = await topBurgers.json()
+const sorts = {
+  top: 'top/10',
+  bottom: 'bottom/10',
+};
 
-    let recentBurgers = await fetch('http://burgerblog/api/recent/10')
-    recentBurgers = await recentBurgers.json()
+const getTopBurgers = async () => {
+  let topBurgers = await fetch('http://localhost/api/top/10');
+  topBurgers = await topBurgers.json();
+  return topBurgers;
+};
 
-    return {
-      topBurgers,
-      recentBurgers
-    }
+const getMainBurgers = async (query) => {
+  const baseURI = 'http://localhost/api/';
+  const sortType = query && query.type;
+  if (!sortType) {
+    return;
   }
+  const extension = sorts[sortType];
+  if (!extension) {
+    return;
+  }
+  const fullUrl = baseURI + extension;
+  console.log('getting main burgers: ', fullUrl);
+  let mainBurgers = await fetch(fullUrl);
+  mainBurgers = await mainBurgers.json();
+  return mainBurgers;
+};
 
-export default Index
+Index.getInitialProps = async function({ pathname, query }) {
+  const topBurgers = await getTopBurgers();
+  let mainBurgers = (await getMainBurgers(query)) || topBurgers;
+  console.log(query);
+  return {
+    topBurgers,
+    mainBurgers,
+  };
+};
+
+export default Index;
