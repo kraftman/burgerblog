@@ -13,10 +13,16 @@ const Header = () => (
     <Link href="/">
       <a style={linkStyle}>Home</a>
     </Link>
-    <Link href="/best">
+    <Link
+      as={'/best'}
+      href={{ pathname: '/', query: { type: 'top', count: 10 } }}
+    >
       <a style={linkStyle}>Best</a>
     </Link>
-    <Link href="/worst">
+    <Link
+      as={'/worst'}
+      href={{ pathname: '/', query: { type: 'bottom', count: 10 } }}
+    >
       <a style={linkStyle}>Worst</a>
     </Link>
   </div>

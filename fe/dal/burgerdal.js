@@ -23,7 +23,6 @@ const getTopBurgers = async (count = 10, offset = 0) => {
     offset,
     offset + count
   );
-  console.log('top: ', topBurgers);
   return getBurgerInfos(topBurgers);
 };
 
@@ -33,7 +32,6 @@ const getWorstBurgers = async (count = 10, offset = 0) => {
     offset,
     offset + count
   );
-  console.log('worst: ', worstBurgers);
   return getBurgerInfos(worstBurgers);
 };
 
