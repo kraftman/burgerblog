@@ -25,6 +25,9 @@ const Header = () => (
     >
       <a style={linkStyle}>Worst</a>
     </Link>
+    <Link href="/submit">
+      <a style={linkStyle}>Submit</a>
+    </Link>
   </div>
 );
 
