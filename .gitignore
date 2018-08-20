@@ -1,3 +1,4 @@
 web/logs
 fe/node_modules
 fe/.next
+fe/uploads
