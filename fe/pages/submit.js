@@ -2,13 +2,24 @@ import Layout from '../components/MyLayout.js';
 import fetch from 'isomorphic-unfetch';
 import { post } from 'axios';
 import React from 'react';
+import imageTools from '../utils/imagetools';
 
-const fileUpload = (data, restaurantName) => {
+const resizeImage = (file, size) => {
+  const maxDimensions = {
+    width: size,
+    height: size,
+  };
+  return new Promise((resolve, reject) => {
+    imageTools.resize(file, maxDimensions, function(result) {
+      return resolve(result);
+    });
+  });
+};
+const fileUpload = (burgerIcon, burgerImage, restaurantName) => {
   const url = 'http://localhost/api/upload';
   const formData = new FormData();
-  console.log(data, restaurantName);
-  formData.set('icon', data);
-  formData.set('image', data);
+  formData.set('icon', burgerIcon);
+  formData.set('image', burgerImage);
   formData.set('restaurantName', restaurantName);
   const config = {
     headers: {
@@ -75,15 +86,16 @@ export default class Index extends React.Component {
   }
 
   onChange(event) {
-    console.log('event:', event.target);
     console.log('event: ', event.target.value);
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  onFormSubmit(e) {
+  async onFormSubmit(e) {
     e.preventDefault(); // Stop form submit
     console.log('fileupload: ', this.state.file, this.state.restaurantName);
-    return fileUpload(this.state.file, this.state.restaurantName)
+    const burgerIcon = await resizeImage(this.state.file, 256);
+    const burgerImage = await resizeImage(this.state.file, 1500);
+    return fileUpload(burgerIcon, burgerImage, this.state.restaurantName)
       .then((res) => {
         console.log('got', res);
       })
