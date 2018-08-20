@@ -30,6 +30,7 @@ const startServer = () => {
   server.get('/icon/:id', (req, res) => {});
 
   server.use('/api/', apiRouter);
+  server.use('/image/', express.static('uploads'));
 
   server.get('*', (req, res) => {
     return handle(req, res);

@@ -7,6 +7,13 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
+/* TODO:
+- get radio button sending working
+- convert uploaded data to redis format
+- save to redis
+
+*/
+
 const resizeImage = (file, size) => {
   const maxDimensions = {
     width: size,
@@ -18,45 +25,29 @@ const resizeImage = (file, size) => {
     });
   });
 };
-const fileUpload = (burgerIcon, burgerImage, restaurantName) => {
+const fileUpload = (burgerIcon, burgerImage, state) => {
   const url = 'http://localhost/api/upload';
   const formData = new FormData();
   formData.set('icon', burgerIcon);
   formData.set('image', burgerImage);
-  formData.set('restaurantName', restaurantName);
+  formData.set('restaurantName', state.restaurantName);
+  formData.set('burgerName', state.burgerName);
+  formData.set('dateEaten', new Date(state.dateEaten).getTime() / 1000);
+  formData.set('meatFlavour', state.meatFlavour);
+  formData.set('meatTexture', state.meatTexture);
+  formData.set('meatSucculence', state.meatSucculence);
+  formData.set('meatVolume', state.meatVolume);
+  formData.set('bunRating', state.bunRating);
+  formData.set('toppingRating', state.toppingRating);
+  formData.set('sideRating', state.sideRating);
+  formData.set('lat', state.lat);
+  formData.set('long', state.long);
   const config = {
     headers: {
       'content-type': 'multipart/form-data',
     },
   };
   return post(url, formData, config);
-};
-
-const getRadioGroup = (label, name) => {
-  const radioRows = [];
-
-  for (let i = 1; i <= 10; i++) {
-    radioRows.push(
-      <label htmlFor={i}>
-        <input
-          type="radio"
-          key={name + i}
-          id={name + i + 'label'}
-          label={i}
-          name={name}
-        />
-        {i}
-      </label>
-    );
-  }
-  const radioGroup = [];
-  radioGroup.push(
-    <div>
-      {label}
-      <radiogroup>{radioRows}</radiogroup>
-    </div>
-  );
-  return radioGroup;
 };
 
 const getTopBurgers = async () => {
@@ -67,17 +58,18 @@ const getTopBurgers = async () => {
 
 export default class Index extends React.Component {
   constructor(props) {
-    console.log('inside submit:', props);
     super(props);
     this.state = {
       file: null,
-      ateDate: moment(),
+      dateEaten: moment(),
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeRadio = this.onChangeRadio.bind(this);
     this.getPosition = this.getPosition.bind(this);
+    this.getRadioGroup = this.getRadioGroup.bind(this);
   }
   static async getInitialProps({ query }) {
     const topBurgers = await getTopBurgers();
@@ -86,27 +78,58 @@ export default class Index extends React.Component {
     };
   }
 
+  getRadioGroup(label, name) {
+    const radioRows = [];
+
+    for (let i = 1; i <= 10; i++) {
+      radioRows.push(
+        <label htmlFor={i}>
+          <input
+            type="radio"
+            key={name + i}
+            id={name + i + 'label'}
+            label={i}
+            name={name}
+            value={i}
+            onChange={this.onChangeRadio}
+          />
+          {i}
+        </label>
+      );
+    }
+    const radioGroup = [];
+    radioGroup.push(
+      <div>
+        {label}
+        <radiogroup>{radioRows}</radiogroup>
+      </div>
+    );
+    return radioGroup;
+  }
+
   onFileChange(e) {
-    console.log('adding file: ', e.target.files[0]);
     this.setState({ file: e.target.files[0] });
   }
 
   onChange(event) {
-    console.log('event: ', event.target.value);
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  onChangeRadio(event) {
+    console.log(event.target);
     this.setState({ [event.target.name]: event.target.value });
   }
 
   onChangeDate(date) {
-    this.setState({ ateDate: date });
+    this.setState({ dateEaten: date });
   }
 
   async onFormSubmit(e) {
     e.preventDefault(); // Stop form submit
-    console.log('fileupload: ', this.state.file, this.state.restaurantName);
     const burgerIcon = await resizeImage(this.state.file, 256);
     const burgerImage = await resizeImage(this.state.file, 1500);
 
-    return fileUpload(burgerIcon, burgerImage, this.state.restaurantName)
+    return fileUpload(burgerIcon, burgerImage, this.state)
       .then((res) => {
         console.log('got', res);
         // add the burger to the list of burgers
@@ -120,12 +143,10 @@ export default class Index extends React.Component {
     console.log(typeof position.coords.latitude);
     this.setState({ lat: position.coords.latitude });
     this.setState({ long: position.coords.longitude });
-    console.log('latlong: ', this.state.lat, this.state.long);
   }
 
   componentDidMount() {
     if (navigator.geolocation) {
-      console.log('loc available');
       navigator.geolocation.getCurrentPosition(this.getPosition, (err) =>
         console.log(err)
       );
@@ -140,7 +161,8 @@ export default class Index extends React.Component {
           <input type="file" name="burgerPhoto" onChange={this.onFileChange} />
           <label htmlFor="dateEaten">Date</label>
           <DatePicker
-            selected={this.state.ateDate}
+            name="dateEaten"
+            selected={this.state.dateEaten}
             onChange={this.onChangeDate}
           />
           ;<label htmlFor="restaurantName">Restaurant Name</label>
@@ -178,13 +200,13 @@ export default class Index extends React.Component {
             onChange={this.onChange}
           />
           <div>
-            {getRadioGroup('Meat Flavour', 'meatflavour')}
-            {getRadioGroup('Meat Texture', 'meatTexture')}
-            {getRadioGroup('Meat Succulence', 'meatSucculence')}
-            {getRadioGroup('Meat Ratio', 'meatRatio')}
-            {getRadioGroup('Bun Rating', 'bunRating')}
-            {getRadioGroup('Topping Rating', 'toppingRating')}
-            {getRadioGroup('Side Rating', 'sideRating')}
+            {this.getRadioGroup('Meat Flavour', 'meatFlavour')}
+            {this.getRadioGroup('Meat Texture', 'meatTexture')}
+            {this.getRadioGroup('Meat Succulence', 'meatSucculence')}
+            {this.getRadioGroup('Meat Ratio', 'meatVolume')}
+            {this.getRadioGroup('Bun Rating', 'bunRating')}
+            {this.getRadioGroup('Topping Rating', 'toppingRating')}
+            {this.getRadioGroup('Side Rating', 'sideRating')}
           </div>
           <button type="submit">Upload</button>
         </form>

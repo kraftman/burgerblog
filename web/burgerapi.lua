@@ -104,9 +104,13 @@ function api:GetRecentBurgers(startAt, endAt)
 end
 
 function api:GetBurgerScore(burger)
-
-  return math.floor((burger.meatFlavour + burger.meatTexture + burger.meatSucculence + burger.meatVolume + burger.toppingRating )*2)
-
+  return math.floor((
+            burger.meatFlavour + 
+            burger.meatTexture + 
+            burger.meatSucculence + 
+            burger.meatVolume + 
+            burger.toppingRating 
+          )*2)
 end
 
 function api:GetMealScore(burger)

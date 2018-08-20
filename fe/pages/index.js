@@ -14,6 +14,7 @@ const Index = (props) => (
           >
             <a>{burger.burgerName}</a>
           </Link>
+          <img src={`/image/${burger.icon}`} height="100" width="100" />
         </li>
       ))}
     </ul>

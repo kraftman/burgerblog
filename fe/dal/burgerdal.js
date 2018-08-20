@@ -35,7 +35,28 @@ const getWorstBurgers = async (count = 10, offset = 0) => {
   return getBurgerInfos(worstBurgers);
 };
 
+const createBurger = async (burger) => {
+  console.log(burger);
+  await client.hmset('burger:' + burger.burgerID, burger);
+  await client.zadd('burgerScores', burger.burgerScore, burger.burgerID);
+  await client.zadd('mealScores', burger.mealScore, burger.burgerID);
+  await client.zadd('burgerDates', burger.dateEaten, burger.burgerID);
+  await client.geoadd(
+    'burgerLocations',
+    burger.long,
+    burger.lat,
+    burger.burgerID
+  );
+
+  // hmset
+  // zadd burgerScores
+  // zadd mealscores
+  // zadd burgerdates
+  // geoadd burger locations
+};
+
 module.exports = {
   getTopBurgers,
   getWorstBurgers,
+  createBurger,
 };
