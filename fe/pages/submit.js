@@ -67,15 +67,17 @@ const getTopBurgers = async () => {
 
 export default class Index extends React.Component {
   constructor(props) {
+    console.log('inside submit:', props);
     super(props);
     this.state = {
       file: null,
-      restaurantName: 'srtrst',
       ateDate: moment(),
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
+    this.getPosition = this.getPosition.bind(this);
   }
   static async getInitialProps({ query }) {
     const topBurgers = await getTopBurgers();
@@ -94,18 +96,40 @@ export default class Index extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  onChangeDate(date) {
+    this.setState({ ateDate: date });
+  }
+
   async onFormSubmit(e) {
     e.preventDefault(); // Stop form submit
     console.log('fileupload: ', this.state.file, this.state.restaurantName);
     const burgerIcon = await resizeImage(this.state.file, 256);
     const burgerImage = await resizeImage(this.state.file, 1500);
+
     return fileUpload(burgerIcon, burgerImage, this.state.restaurantName)
       .then((res) => {
         console.log('got', res);
+        // add the burger to the list of burgers
       })
       .catch((err) => {
         console.log('err from post: ', err);
       });
+  }
+
+  getPosition(position) {
+    console.log(typeof position.coords.latitude);
+    this.setState({ lat: position.coords.latitude });
+    this.setState({ long: position.coords.longitude });
+    console.log('latlong: ', this.state.lat, this.state.long);
+  }
+
+  componentDidMount() {
+    if (navigator.geolocation) {
+      console.log('loc available');
+      navigator.geolocation.getCurrentPosition(this.getPosition, (err) =>
+        console.log(err)
+      );
+    }
   }
 
   render() {
@@ -115,8 +139,11 @@ export default class Index extends React.Component {
         <form onSubmit={this.onFormSubmit}>
           <input type="file" name="burgerPhoto" onChange={this.onFileChange} />
           <label htmlFor="dateEaten">Date</label>
-          <DatePicker selected={this.state.ateDate} onChange={this.onChange} />;
-          <label htmlFor="restaurantName">Restaurant Name</label>
+          <DatePicker
+            selected={this.state.ateDate}
+            onChange={this.onChangeDate}
+          />
+          ;<label htmlFor="restaurantName">Restaurant Name</label>
           <input
             type="text"
             name="restaurantName"

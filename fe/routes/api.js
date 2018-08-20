@@ -35,7 +35,13 @@ router.post('/upload', cpUpload, async function(req, res) {
   console.log(req.files['icon']);
   console.log(req.files['image']);
   console.log(req.body['restaurantName']);
-  res.json({ success: true });
+  try {
+    burgerDal.createBurger();
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500);
+    return res.json({ success: false });
+  }
 });
 
 module.exports = router;
