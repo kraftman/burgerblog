@@ -1,4 +1,8 @@
 {
+    "env" : {
+        "browser": true,
+        "node": true
+    },
   "parserOptions": {
       "ecmaVersion": 2017,
       "sourceType": "module",
@@ -15,4 +19,4 @@
         "react/react-in-jsx-scope": 0,
         "react/prop-types": 0
     }
-  }
+}
