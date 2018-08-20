@@ -3,6 +3,9 @@ import fetch from 'isomorphic-unfetch';
 import { post } from 'axios';
 import React from 'react';
 import imageTools from '../utils/imagetools';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 const resizeImage = (file, size) => {
   const maxDimensions = {
@@ -68,6 +71,7 @@ export default class Index extends React.Component {
     this.state = {
       file: null,
       restaurantName: 'srtrst',
+      ateDate: moment(),
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
@@ -111,13 +115,7 @@ export default class Index extends React.Component {
         <form onSubmit={this.onFormSubmit}>
           <input type="file" name="burgerPhoto" onChange={this.onFileChange} />
           <label htmlFor="dateEaten">Date</label>
-          <input
-            type="date"
-            name="dateEaten"
-            value=""
-            onChange={this.onChange}
-          />
-
+          <DatePicker selected={this.state.ateDate} onChange={this.onChange} />;
           <label htmlFor="restaurantName">Restaurant Name</label>
           <input
             type="text"
@@ -125,16 +123,33 @@ export default class Index extends React.Component {
             value={this.state.restaurantName || ''}
             onChange={this.onChange}
           />
-
           <label htmlFor="burgerName">Burger Name</label>
-          <input type="text" name="burgerName" value="" />
-
-          <input id="lat" type="hidden" name="lat" value="" />
-          <input id="long" type="hidden" name="long" value="" />
-
+          <input
+            type="text"
+            name="burgerName"
+            value={this.state.burgerName || ''}
+            onChange={this.onChange}
+          />
+          <input
+            id="lat"
+            type="hidden"
+            name="lat"
+            value={this.state.lat || ''}
+            onChange={this.onChange}
+          />
+          <input
+            id="long"
+            type="hidden"
+            name="long"
+            value={this.state.long || ''}
+            onChange={this.onChange}
+          />
           <label htmlFor="burgerNotes">Burger Notes</label>
-          <textarea name="burgerNotes" />
-
+          <textarea
+            name="burgerNotes"
+            value={this.state.burgerNotes || ''}
+            onChange={this.onChange}
+          />
           <div>
             {getRadioGroup('Meat Flavour', 'meatflavour')}
             {getRadioGroup('Meat Texture', 'meatTexture')}
