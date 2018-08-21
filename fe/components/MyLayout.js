@@ -1,18 +1,16 @@
-import Header from './Header'
+import Header from './Header';
 import Sidebar from './Sidebar';
-
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
-}
+import css from '../sass/sitestyle.scss';
 
 const Layout = (props) => (
-  <div style={layoutStyle}>
+  <div className={css['center-page']}>
     <Header />
-    <Sidebar topBurgers={props.topBurgers} recentBurgers={props.recentBurgers}/>
+    <Sidebar
+      topBurgers={props.topBurgers}
+      recentBurgers={props.recentBurgers}
+    />
     {props.children}
   </div>
-)
+);
 
-export default Layout
+export default Layout;

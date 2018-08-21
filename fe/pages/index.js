@@ -1,23 +1,17 @@
 import Layout from '../components/MyLayout.js';
-import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
+import BurgerItem from '../components/BurgerItem';
+import css from '../sass/sitestyle.scss';
 
 const Index = (props) => (
   <Layout {...props}>
-    <h1>Recent</h1>
-    <ul>
-      {props.mainBurgers.map((burger) => (
-        <li key={burger.burgerID}>
-          <Link
-            as={`/b/${burger.burgerID}`}
-            href={`/post?id=${burger.burgerID}`}
-          >
-            <a>{burger.burgerName}</a>
-          </Link>
-          <img src={`/image/${burger.icon}`} height="100" width="100" />
-        </li>
-      ))}
-    </ul>
+    <div className={css.main}>
+      <ul>
+        {props.mainBurgers.map((burger) => (
+          <BurgerItem key="{burger.burgerID}" burger={burger} />
+        ))}
+      </ul>
+    </div>
   </Layout>
 );
 

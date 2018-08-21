@@ -1,12 +1,9 @@
 import Link from 'next/link';
 
-const sidebarStyle = {
-  float: 'left',
-  backgroundColor: '#ffd7b5',
-};
+import css from '../sass/sitestyle.scss';
 
 const Sidebar = (props) => (
-  <div style={sidebarStyle}>
+  <div className={css.left}>
     <h1>Top Burgers:</h1>
     <ul>
       {props.topBurgers.map((burger) => (

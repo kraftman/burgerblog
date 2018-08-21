@@ -1,32 +1,25 @@
 import Link from 'next/link';
-
-const topBar = {
-  backgroundColor: '#f70',
-  padding: 10,
-};
-const linkStyle = {
-  marginRight: 15,
-};
+import css from '../sass/sitestyle.scss';
 
 const Header = () => (
-  <div style={topBar}>
+  <div className={css.top}>
     <Link href="/">
-      <a style={linkStyle}>Home</a>
+      <a className={css['title-row']}>Home</a>
     </Link>
     <Link
       as={'/best'}
       href={{ pathname: '/', query: { type: 'top', count: 10 } }}
     >
-      <a style={linkStyle}>Best</a>
+      <a className={css['title-row']}>Best</a>
     </Link>
     <Link
       as={'/worst'}
       href={{ pathname: '/', query: { type: 'bottom', count: 10 } }}
     >
-      <a style={linkStyle}>Worst</a>
+      <a className={css['title-row']}>Worst</a>
     </Link>
     <Link href="/submit">
-      <a style={linkStyle}>Submit</a>
+      <a className={css['title-row']}>Submit</a>
     </Link>
   </div>
 );
