@@ -5,6 +5,7 @@ const { checkSchema } = require('express-validator/check');
 const multer = require('multer');
 const upload = multer({ dest: './uploads/' });
 const uuid = require('uuid/v4');
+const md5 = require('md5');
 
 const validator = () => {
   return {
@@ -55,6 +56,27 @@ router.get('/burger/:id', async (req, res) => {
   const burgerID = req.params.id;
   const burger = await burgerDal.getBurgerInfo(burgerID);
   return res.json(burger);
+});
+
+const loginPost = upload.fields([{ name: 'username' }, { name: 'password' }]);
+
+router.post('/login', loginPost, async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log(req.params);
+  console.log(username, password);
+  if (username !== 'kraftman') {
+    res.status(401);
+    return res.json({ err: 'bad username' });
+  }
+
+  const hashedPassword = md5(password + 'hashesallthewaydown');
+  if (hashedPassword !== 'b718340fc49cfc9d542eab79e5eeaab8') {
+    return res.json({ err: 'bad password' });
+  }
+
+  const token = uuid();
+  return res.json({ token });
 });
 
 var cpUpload = upload.fields([
