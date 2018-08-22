@@ -59,4 +59,5 @@ module.exports = {
   getTopBurgers,
   getWorstBurgers,
   createBurger,
+  getBurgerInfo,
 };

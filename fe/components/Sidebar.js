@@ -9,8 +9,8 @@ const Sidebar = (props) => (
       {props.topBurgers.map((burger) => (
         <li key={burger.burgerID}>
           <Link
-            as={`/p/${burger.burgerID}`}
-            href={`/post?id=${burger.burgerID}`}
+            as={`/b/${burger.burgerID}`}
+            href={`/burger?id=${burger.burgerID}`}
           >
             <a>{burger.burgerName}</a>
           </Link>

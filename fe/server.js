@@ -10,7 +10,7 @@ const startServer = () => {
   const server = express();
 
   server.get('/b/:id', (req, res) => {
-    const actualPage = '/';
+    const actualPage = '/burger';
     const queryParams = { id: req.params.id };
     app.render(req, res, actualPage, queryParams);
   });

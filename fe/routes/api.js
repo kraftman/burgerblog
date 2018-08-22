@@ -44,10 +44,17 @@ router.get('/top/:count', checkSchema(validator), async function(req, res) {
   const topBurgers = await burgerDal.getTopBurgers(count);
   return res.json(topBurgers);
 });
+
 router.get('/bottom/:count', checkSchema(validator), async function(req, res) {
   const count = req.params.count || 10;
   const topBurgers = await burgerDal.getWorstBurgers(count);
   return res.json(topBurgers);
+});
+
+router.get('/burger/:id', async (req, res) => {
+  const burgerID = req.params.id;
+  const burger = await burgerDal.getBurgerInfo(burgerID);
+  return res.json(burger);
 });
 
 var cpUpload = upload.fields([
